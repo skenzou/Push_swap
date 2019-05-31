@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 01:20:57 by midrissi          #+#    #+#             */
-/*   Updated: 2019/05/31 03:43:26 by Mohamed          ###   ########.fr       */
+/*   Updated: 2019/05/31 12:01:58 by Mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,8 @@ int		parse_args(int ac, char **av, t_list **head)
 
 	i = 0;
 	*head = NULL;
+	if (ac == 1)
+		return (1);
 	while (++i < ac)
 	{
 		if (is_valid_arg(av[i], &number) && is_not_in_list(number, *head))
@@ -159,7 +161,10 @@ int		parse_args(int ac, char **av, t_list **head)
 				return (1);
 		}
 		else
+		{
+			ft_putendl_fd("Error", 2);
 			return (1);
+		}
 	}
 	return (0);
 }
