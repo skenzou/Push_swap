@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 01:20:57 by midrissi          #+#    #+#             */
-/*   Updated: 2019/05/31 03:26:51 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/05/31 03:43:26 by Mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ int		main(int ac, char **av)
 	if (parse_args(ac, av, &stack_a))
 		return (!ft_lstdestroy(&stack_a));
 	if (read_instructions(&instructions))
-		return (ft_lstdestroy(&instructions) != ft_lstdestroy(&stack_a));
+		return (ft_lstdestroy(&instructions) == ft_lstdestroy(&stack_a));
 	print_list(stack_a, 1);
 	print_list(instructions, 0);
 	(void)ac;
