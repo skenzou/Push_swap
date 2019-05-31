@@ -6,7 +6,7 @@
 #    By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/03 09:24:41 by midrissi          #+#    #+#              #
-#    Updated: 2019/05/31 14:58:09 by midrissi         ###   ########.fr        #
+#    Updated: 2019/05/31 18:48:16 by midrissi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ MSG				=	Compiling checker
 
 NAME = checker
 cc = gcc
-C_FLAGS = -Wall -Wextra -Werror
+C_FLAGS = #-Wall -Wextra -Werror
 SRC_NAME = main.c parse_args.c read_instructions.c utils.c\
 			execute_instructions.c
 OBJ_PATH = ./obj/
