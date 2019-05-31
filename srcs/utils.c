@@ -6,7 +6,7 @@
 /*   By: Mohamed <Mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 12:19:41 by Mohamed           #+#    #+#             */
-/*   Updated: 2019/05/31 12:20:02 by Mohamed          ###   ########.fr       */
+/*   Updated: 2019/05/31 16:52:07 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,52 @@ void	print_list(t_list *list, char number)
 	int i;
 
 	i = 0;
-	if (number)
-		ft_printf("==============================STACK_%c===============================\n", '@' + number);
+	if (number == 1)
+		ft_printf(
+		ANSI_BBLUE"========================STACK_A=========================\n");
+	else if (number == 2)
+		ft_printf(
+		ANSI_BRED"========================STACK_B=========================\n");
 	else
-		ft_printf("============================INSTRUCTIONS============================\n");
+		ft_printf(
+		ANSI_BCYAN"======================INSTRUCTIONS======================\n");
 	while(list)
 	{
 		if (number)
 			ft_printf("number[%d]: %d\n", i++, *((int *)list->content));
 		else
-			ft_printf("instruction[%d]: %s\n", i++, (char *)list->content);
+			ft_printf("instruction[%d]: %s\n", i++,
+								((t_instruction *)list->content)->op);
 		list = list->next;
 	}
-	ft_printf("====================================================================\n");
+	ft_printf(
+		"========================================================\n"ANSI_RESET);
+}
+
+void	print_lists(t_list *stack_a, t_list *stack_b, t_list *instructions)
+{
+	if (stack_a)
+		print_list(stack_a, 1);
+	if (stack_b)
+		print_list(stack_b, 2);
+	if (instructions)
+		print_list(instructions, 0);
+}
+
+void		destroy_lists(t_list *stack_a, t_list *stack_b, t_list *instructions)
+{
+	ft_lstdestroy(&stack_a);
+	ft_lstdestroy(&stack_b);
+	ft_lstdestroy(&instructions);
+}
+
+int		is_sorted(t_list *stack)
+{
+	while (stack && stack->next)
+	{
+		if ((*(int *)stack->content) > (*(int *)stack->next->content))
+			return (0);
+		stack = stack->next;
+	}
+	return (1);
 }

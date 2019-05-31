@@ -6,7 +6,7 @@
 /*   By: Mohamed <Mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 12:17:57 by Mohamed           #+#    #+#             */
-/*   Updated: 2019/05/31 12:19:01 by Mohamed          ###   ########.fr       */
+/*   Updated: 2019/05/31 13:32:15 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,6 @@ int		parse_args(int ac, char **av, t_list **head)
 			return (1);
 		}
 	}
+	ft_lstrev(head);
 	return (0);
 }

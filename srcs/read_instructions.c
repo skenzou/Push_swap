@@ -6,53 +6,45 @@
 /*   By: Mohamed <Mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 12:20:59 by Mohamed           #+#    #+#             */
-/*   Updated: 2019/05/31 12:21:55 by Mohamed          ###   ########.fr       */
+/*   Updated: 2019/05/31 16:26:49 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-// Pas le droit aux variables globales finalement :(
-// #define NB_INSTRUCTIONS 9
-// const char *g_instructions[NB_INSTRUCTIONS] ={
-// 	"rra",
-// 	"sa",
-// 	"sb",
-// 	"ss",
-// 	"pa",
-// 	"pb",
-// 	"ra",
-// 	"rb",
-// 	"rr",
-// };
+static t_instruction	 get_existing_instructions(int index)
+{
+	return ((const t_instruction [NB_INSTRUCTIONS]){
+		{"rra", STACK_A, &reverse_rotate_stack},
+		{"rrb", STACK_B, &reverse_rotate_stack},
+		{"rrr", BOTH, &reverse_rotate_stack},
+		{"sa", STACK_A, &swap_two},
+		{"sb", STACK_B, &swap_two},
+		{"ss", BOTH, &swap_two},
+		{"pa", STACK_A, &push_to_second},
+		{"pb", STACK_B, &push_to_second},
+		{"ra", STACK_A, &rotate_stack},
+		{"rb", STACK_B, &rotate_stack},
+		{"rr", BOTH, &rotate_stack},
+	}[index]);
+}
 
 /*
 ** Tells whether input is a existing instruction.
 */
-static int		is_instruction(char *input)
+static int		add_instruction(char *input, t_list **head)
 {
-	if (ft_strequ("rrb", input))
-		return (1);
-	if (ft_strequ("rrr", input))
-		return (1);
-	if (ft_strequ("rra", input))
-		return (1);
-	if (ft_strequ("sa", input))
-		return (1);
-	if (ft_strequ("sb", input))
-		return (1);
-	if (ft_strequ("ss", input))
-		return (1);
-	if (ft_strequ("pa", input))
-		return (1);
-	if (ft_strequ("pb", input))
-		return (1);
-	if (ft_strequ("ra", input))
-		return (1);
-	if (ft_strequ("rb", input))
-		return (1);
-	if (ft_strequ("rr", input))
-		return (1);
+	int					i;
+	t_instruction		instruction;
+
+	i = -1;
+	while (++i < NB_INSTRUCTIONS)
+	{
+		instruction = get_existing_instructions(i);
+		if (ft_strequ(input, instruction.op))
+			return (add_to_list(head, (void *)&instruction,
+														sizeof(t_instruction)));
+	}
 	return (0);
 }
 
@@ -68,9 +60,7 @@ int		read_instructions(t_list **head)
 	{
 		if ((ret = get_next_line(0, &input, '\n')) > 0)
 		{
-			if (is_instruction(input))
-				ret = add_to_list(head, (void *)input, ft_strlen(input) + 1);
-			else
+			if ((ret = add_instruction(input, head)) == 0)
 			{
 				ft_putendl_fd("Error", 2);
 				ret = -1;
