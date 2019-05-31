@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 13:34:56 by midrissi          #+#    #+#             */
-/*   Updated: 2019/05/31 16:40:54 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/05/31 21:36:44 by Mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void		execute_instructions(t_list **stack_a, t_list **stack_b,
 		}
 		instructions = instructions->next;
 	}
-	if (is_sorted(*stack_a))
+	if (is_sorted(*stack_a) && !(*stack_b))
 		ft_printf(ANSI_GREEN"OK\n"ANSI_RESET);
 	else
 		ft_printf(ANSI_RED"KO\n"ANSI_RESET);
