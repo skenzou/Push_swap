@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 01:20:57 by midrissi          #+#    #+#             */
-/*   Updated: 2019/05/31 12:01:58 by Mohamed          ###   ########.fr       */
+/*   Updated: 2019/05/31 12:05:33 by Mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,9 @@ int		read_instructions(t_list **head)
 
 	*head = NULL;
 	ret = 1;
+	input = NULL;
 	while (ret == 1)
 	{
-		input = NULL;
 		if ((ret = get_next_line(0, &input, '\n')) > 0)
 		{
 			if (is_instruction(input))
@@ -109,6 +109,7 @@ int		read_instructions(t_list **head)
 				ret = -1;
 			}
 		}
+		ft_strdel(&input);
 	}
 	if (!ret)
 		ft_lstrev(head);
