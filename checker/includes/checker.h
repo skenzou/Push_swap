@@ -6,14 +6,14 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 01:49:30 by midrissi          #+#    #+#             */
-/*   Updated: 2019/05/31 16:51:24 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/05/31 23:20:23 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHECKER_H
 # define CHECKER_H
 
-# include "../libft/includes/libft.h"
+# include "../../libft/includes/libft.h"
 # define ANSI_RED		"\x1b[31m"
 # define ANSI_GREEN		"\x1b[32m"
 # define ANSI_RESET		"\x1b[0m"
