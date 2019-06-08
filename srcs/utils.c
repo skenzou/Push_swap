@@ -6,11 +6,11 @@
 /*   By: Mohamed <Mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 12:19:41 by Mohamed           #+#    #+#             */
-/*   Updated: 2019/05/31 16:52:07 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/08 09:35:37 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push_swap.h"
 
 /*
 ** Creates a new node and add it to my list.

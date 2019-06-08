@@ -6,11 +6,11 @@
 /*   By: Mohamed <Mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 12:20:59 by Mohamed           #+#    #+#             */
-/*   Updated: 2019/05/31 19:57:13 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/08 09:35:33 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push_swap.h"
 
 static const t_instruction	 *get_existing_instructions()
 {

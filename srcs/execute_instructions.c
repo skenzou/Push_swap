@@ -6,11 +6,11 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 13:34:56 by midrissi          #+#    #+#             */
-/*   Updated: 2019/05/31 21:36:44 by Mohamed          ###   ########.fr       */
+/*   Updated: 2019/06/08 09:35:45 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push_swap.h"
 
 void	swap_two(t_list **stack, t_list **unused)
 {

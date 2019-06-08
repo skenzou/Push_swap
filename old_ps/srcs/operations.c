@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/31 23:26:42 by midrissi          #+#    #+#             */
-/*   Updated: 2019/05/31 23:27:20 by midrissi         ###   ########.fr       */
+/*   Created: 2019/06/08 07:09:46 by midrissi          #+#    #+#             */
+/*   Updated: 2019/06/08 08:46:17 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-# include "../../libft/includes/libft.h"
-# define ANSI_RED		"\x1b[31m"
-# define ANSI_GREEN		"\x1b[32m"
-# define ANSI_RESET		"\x1b[0m"
-# define ANSI_BRED		"\x1b[1m\x1b[31m"
-# define ANSI_BBLUE		"\x1b[1m\x1b[34m"
-# define ANSI_BCYAN		"\x1b[1m\x1b[36m"
+void		rotate_stack(t_int_node *stack_a)
+{
+	int size;
+	int i;
 
-#endif
+	size = stack_a[0].size;
+	i = -1;
+}

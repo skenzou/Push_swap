@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 01:49:30 by midrissi          #+#    #+#             */
-/*   Updated: 2019/05/31 23:20:23 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/08 10:08:06 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-# include "../../libft/includes/libft.h"
+# include "../libft/includes/libft.h"
 # define ANSI_RED		"\x1b[31m"
 # define ANSI_GREEN		"\x1b[32m"
 # define ANSI_RESET		"\x1b[0m"
@@ -60,5 +60,9 @@ void	reverse_rotate_stack(t_list **stack, t_list **unused);
 void	rotate_stack(t_list **stack, t_list **unused);
 void	execute_instructions(t_list **stack_a, t_list **stack_b,
 														t_list *instructions);
+/*
+** SORTER.C
+*/
+void		sorter(t_list **stack_a, t_list **stack_b, int size);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/03 09:24:41 by midrissi          #+#    #+#              #
-#    Updated: 2019/05/31 23:20:34 by midrissi         ###   ########.fr        #
+#    Updated: 2019/06/08 06:52:24 by midrissi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,21 +33,20 @@ _ICYAN			=	\x1b[46m
 _IWHITE			=	\x1b[47m
 _MAGENTA		=	\x1b[35m
 
-MSG				=	Compiling checker
+MSG				=	Compiling push_swap
 .PHONY: all, $(NAME), clean, fclean, re
 
-NAME = checker
+NAME = push_swap
 cc = gcc
 C_FLAGS = -Wall -Wextra -Werror
-SRC_NAME = main.c parse_args.c read_instructions.c utils.c\
-			execute_instructions.c
+SRC_NAME = main.c parse_args.c utils.c sorter.c
 OBJ_PATH = ./obj/
 LFT_PATH = ../libft/
 LFT_NAME = libft.a
 INC_PATH = ./includes
 SRC_PATH = ./srcs/
 OBJ_NAME = $(SRC_NAME:.c=.o)
-INC_NAME = checker.h
+INC_NAME = push_swap.h
 SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
 LONGEST			=	$(shell echo $(notdir $(SRC)) | tr " " "\n" | awk ' { if (\
 				length > x ) { x = length; y = $$0 } }END{ print y }' | wc -c)
@@ -61,7 +60,7 @@ $(LFT_PATH)$(LFT_NAME):
 
 $(NAME): $(OBJ)
 		@$(CC) -o $(NAME) -L $(LFT_PATH) -lft $^ -o $@
-		@printf "$(_BOLD)$(_RED)./checker is ready for use\n$(_END)"
+		@printf "$(_BOLD)$(_RED)./push_swap is ready for use\n$(_END)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 		@mkdir -p $(OBJ_PATH)
@@ -74,11 +73,11 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 clean:
 		@make -C $(LFT_PATH) clean
 		@rm -rf $(OBJ_PATH)
-		@echo "$(_BOLD)$(_RED)Sucesfuly removed all objects from checker$(_END)"
+		@echo "$(_BOLD)$(_RED)Sucesfuly removed all objects from push_swap$(_END)"
 
 fclean: clean
 		@make -C $(LFT_PATH) fclean
 		@rm -f $(NAME)
-		@echo "$(_BOLD)$(_RED)Sucessfuly removed ${NAME} from checker$(_END)"
+		@echo "$(_BOLD)$(_RED)Sucessfuly removed ${NAME} from push_swap$(_END)"
 
 re: fclean all

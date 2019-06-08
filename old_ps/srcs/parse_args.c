@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Mohamed <Mohamed@student.42.fr>            +#+  +:+       +#+        */
+/*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/31 12:17:57 by Mohamed           #+#    #+#             */
-/*   Updated: 2019/05/31 13:32:15 by midrissi         ###   ########.fr       */
+/*   Created: 2019/06/07 21:11:44 by midrissi          #+#    #+#             */
+/*   Updated: 2019/06/08 08:47:30 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push_swap.h"
 
 static int		is_valid_arg(char *str, int *number)
 {
@@ -18,7 +18,7 @@ static int		is_valid_arg(char *str, int *number)
 	int len;
 
 	*number = ft_atoi(str);
-	if ((signe = *str == '-'))
+	if ((signe = *str == '-') || *str == '+')
 		str++;
 	if (ft_isonly_digit(str) == 0)
 		return (0);
@@ -30,39 +30,37 @@ static int		is_valid_arg(char *str, int *number)
 	return (!((signe && *number > 0) || (!signe && *number < 0)));
 }
 
-static int		is_not_in_list(int number, t_list *list)
+static int		is_not_in_stack(int number, t_int_node *stack_a)
 {
-	while (list)
-	{
-		if (number == *((int *)list->content))
+	int i;
+	int size;
+
+	i = -1;
+	size = stack_a[0].size;
+	while (++i < size)
+		if (stack_a[i].set && stack_a[i].value == number)
 			return (0);
-		list = list->next;
-	}
 	return (1);
 }
 
-int		parse_args(int ac, char **av, t_list **head)
+t_int_node		*parse_args(int ac, char **av)
 {
-	int i;
-	int number;
+	int			i;
+	int			number;
 
 	i = 0;
-	*head = NULL;
 	if (ac == 1)
-		return (1);
+		return (NULL);
+	if (!(stack_a = init_stack(ac - 1)))
+		return (NULL);
 	while (++i < ac)
-	{
-		if (is_valid_arg(av[i], &number) && is_not_in_list(number, *head))
-		{
-			if (add_to_list(head, &number, sizeof(int *)) == - 1)
-				return (1);
-		}
+		if (is_valid_arg(av[i], &number) && is_not_in_stack(number, stack_a))
+			set_node(&stack_a[i - 1], number);
 		else
 		{
 			ft_putendl_fd("Error", 2);
-			return (1);
+			free(stack_a);
+			return (NULL);
 		}
-	}
-	ft_lstrev(head);
-	return (0);
+	return (stack_a);
 }

@@ -1,20 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/31 23:27:32 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/01 02:32:21 by midrissi         ###   ########.fr       */
+/*   Created: 2019/06/08 07:43:19 by midrissi          #+#    #+#             */
+/*   Updated: 2019/06/08 08:21:52 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int main(int ac, char **av)
+void		swap_top(t_stack *stack)
 {
-	(void)ac;
-	(void)av;
-	return (0);
+	int		tmp;
+
+	tmp = stack->items[stack->top];
+	stack->items[stack->top - 1] = tmp;
+}
+
+void 		pop(t_stack *stack)
+{
+	stack->top--;
+}
+
+void		push(t_stack *stack, int value)
+{
+	stack->items[++stack->top] = value;
+}
+
+void		push_to_second(t_stack *first, t_stack *second)
+{
+	push(second, first[first->top]);
+	pop(first);
 }
