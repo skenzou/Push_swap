@@ -6,7 +6,7 @@
 /*   By: Mohamed <Mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 12:17:57 by Mohamed           #+#    #+#             */
-/*   Updated: 2019/06/09 06:09:05 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/09 08:27:40 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,23 +58,71 @@ static int		check_one(char *str, t_list **head)
 
 static	int		check_flags(char ***av, int *ac, char *flags)
 {
+	char *str;
+
 	if (*ac == 1)
 		return (-1);
 	if ((*av)[1][0] != '-' || ft_isdigit((*av)[1][1]))
 		return (0);
-	if (ft_strequ((*av)[1], "-v"))
+	str = ((*av)[1]) + 1;
+	while (*str)
 	{
-		(*ac)--;
-		(*av)++;
-		*flags |= VISU;
-		return (0);
+		if (*str == 'f')
+			*flags |= FROM_FILE;
+		else if (*str == 'v')
+			*flags |= VISU;
+		else
+		{
+			ft_putstr_fd("push_swap/checker: illegal option", 2);
+			ft_putendl_fd("\nusage: push_swap/checker [-v] [numbers ...]", 2);
+			return (-1);
+		}
+		str++;
 	}
-	else
+	(*ac)-- && (*av)++;
+	return (0);
+}
+
+static int		read_from_file(char *file, t_list **head)
+{
+	int		fd;
+	char	**split;
+	char	*input;
+	int		ret;
+	int		i;
+	int		count;
+
+	fd = 0;
+	ret = 1;
+	if ((fd = open(file, O_RDONLY)) == -1)
 	{
-		ft_putstr_fd("push_swap/checker: illegal option", 2);
-		ft_putendl_fd("\nusage: push_swap/checker [-v] [numbers ...]", 2);
+		perror(file);
 		return (-1);
 	}
+	input = NULL;
+	count = 0;
+	while (ret == 1)
+	{
+		i = -1;
+		if ((ret = get_next_line(fd, &input, '\n')) > 0)
+		{
+			if (!(split = ft_strsplit(input, ' ')))
+				ret = -1;
+			if (ret != -1)
+			{
+				while(split[++i])
+					if ((ret = check_one(split[i], head)) == -1)
+						break ;
+					else
+						count++;
+				ft_splitdel(split);
+			}
+		}
+		ft_strdel(&input);
+	}
+	ft_lstrev(head);
+	close (fd);
+	return (ret == -1 ? ret : count);
 }
 
 int		parse_args(int ac, char **av, t_list **head, char *flags)
@@ -88,6 +136,8 @@ int		parse_args(int ac, char **av, t_list **head, char *flags)
 	count = 0;
 	if (check_flags(&av, &ac, flags) || ac == 1)
 		return (-1);
+	if (*flags & FROM_FILE)
+		return (read_from_file(av[1], head));
 	while (++i < ac && (j = -1))
 	{
 		if (!(split = ft_strsplit(av[i], ' ')))

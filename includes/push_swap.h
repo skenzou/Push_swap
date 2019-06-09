@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 01:49:30 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/09 06:13:36 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/09 08:10:20 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define PUSH_SWAP_H
 
 # include "../libft/includes/libft.h"
+# include <stdio.h>
+# include <fcntl.h>
 # define ANSI_RED		"\x1b[31m"
 # define ANSI_GREEN		"\x1b[32m"
 # define ANSI_RESET		"\x1b[0m"
@@ -26,6 +28,8 @@
 # define STACK_B			1
 # define BOTH				2
 # define VISU				(1 << 0)
+# define FROM_FILE			(1 << 1)
+
 typedef struct	s_instruction
 {
 	char			*op;
@@ -66,6 +70,7 @@ void	execute_instructions(t_list **stack_a, t_list **stack_b,
 /*
 ** SORTER.C
 */
-void		sorter(t_list **stack_a, t_list **stack_b, int size, int initial_size);
+void	sorter(t_list **stack_a, t_list **stack_b, int size, int initial_size);
+void	sort_small(t_list **stack, char dest);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: Mohamed <Mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 12:19:41 by Mohamed           #+#    #+#             */
-/*   Updated: 2019/06/08 09:35:37 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/09 08:29:10 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,7 @@ void	print_list(t_list *list, char number)
 
 void	print_lists(t_list *stack_a, t_list *stack_b, t_list *instructions)
 {
-	if (stack_a)
-		print_list(stack_a, 1);
+	print_list(stack_a, 1);
 	if (stack_b)
 		print_list(stack_b, 2);
 	if (instructions)
