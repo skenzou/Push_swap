@@ -6,7 +6,7 @@
 /*   By: Mohamed <Mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 12:17:57 by Mohamed           #+#    #+#             */
-/*   Updated: 2019/06/08 09:35:29 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/09 06:09:05 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,28 +41,67 @@ static int		is_not_in_list(int number, t_list *list)
 	return (1);
 }
 
-int		parse_args(int ac, char **av, t_list **head)
+static int		check_one(char *str, t_list **head)
 {
-	int i;
+	int ret;
 	int number;
 
-	i = 0;
-	*head = NULL;
-	if (ac == 1)
-		return (1);
-	while (++i < ac)
+	ret = 0;
+	if (is_valid_arg(str, &number) && is_not_in_list(number, *head))
+		ret = add_to_list(head, &number, sizeof(int *));
+	else
+		ret = -1;
+	if (ret == -1)
+		ft_putendl_fd("Error", 2);
+	return (ret);
+}
+
+static	int		check_flags(char ***av, int *ac, char *flags)
+{
+	if (*ac == 1)
+		return (-1);
+	if ((*av)[1][0] != '-' || ft_isdigit((*av)[1][1]))
+		return (0);
+	if (ft_strequ((*av)[1], "-v"))
 	{
-		if (is_valid_arg(av[i], &number) && is_not_in_list(number, *head))
-		{
-			if (add_to_list(head, &number, sizeof(int *)) == - 1)
-				return (1);
-		}
-		else
-		{
-			ft_putendl_fd("Error", 2);
-			return (1);
-		}
+		(*ac)--;
+		(*av)++;
+		*flags |= VISU;
+		return (0);
+	}
+	else
+	{
+		ft_putstr_fd("push_swap/checker: illegal option", 2);
+		ft_putendl_fd("\nusage: push_swap/checker [-v] [numbers ...]", 2);
+		return (-1);
+	}
+}
+
+int		parse_args(int ac, char **av, t_list **head, char *flags)
+{
+	int i;
+	int j;
+	int count;
+	char **split;
+
+	i = 0;
+	count = 0;
+	if (check_flags(&av, &ac, flags) || ac == 1)
+		return (-1);
+	while (++i < ac && (j = -1))
+	{
+		if (!(split = ft_strsplit(av[i], ' ')))
+			return (-1);
+		while (split[++j])
+			if (check_one(split[j], head) == -1)
+			{
+				ft_splitdel(split);
+				return (-1);
+			}
+			else
+				count++;
+		ft_splitdel(split);
 	}
 	ft_lstrev(head);
-	return (0);
+	return (count);
 }

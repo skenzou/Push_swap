@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 10:04:50 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/08 11:14:51 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/09 06:13:58 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int			find_median(t_list *stack, int size)
 	return (0);
 }
 
-void		sorter(t_list **stack_a, t_list **stack_b, int size)
+void		sorter(t_list **stack_a, t_list **stack_b, int size, int initial_size)
 {
 	int median;
 	int i;
@@ -68,29 +68,35 @@ void		sorter(t_list **stack_a, t_list **stack_b, int size)
 	while (++i < size)
 	{
 		value = *((int *)(*stack_a)->content);
-		if (value > median)
+		if (value <= median)
 		{
-			push_to_second(stack_b, stack_a);
+			push(stack_b, stack_a, STACK_B);
 			top_half_len++;
 		}
-		rotate_stack(stack_a, NULL);
+		else
+			rotate_stack(stack_a, NULL, STACK_A);
 	}
-	ft_printf("MEDIAN: %d\n", median);
-	print_lists(*stack_a, *stack_b, NULL);
-	i = -1;
-	while (++i < size - top_half_len)
-		reverse_rotate_stack(stack_a, NULL);
-		print_lists(*stack_a, *stack_b, NULL);
-	i = -1;
-	while (++i < top_half_len)
-		push_to_second(stack_a, stack_b);
-	print_lists(*stack_a, *stack_b, NULL);
-	sorter(stack_a, stack_b, top_half_len);
+	if (size != initial_size)
+	{
+		i = -1;
+		while (++i < size - top_half_len)
+			reverse_rotate_stack(stack_a, NULL, STACK_A);
+	}
 	i = -1;
 	while (++i < top_half_len)
-		rotate_stack(stack_a, NULL);
-	sorter(stack_a, stack_b, size - top_half_len);
+		push(stack_a, stack_b, STACK_A);
+	sorter(stack_a, stack_b, top_half_len, initial_size);
 	i = -1;
 	while (++i < top_half_len)
-		reverse_rotate_stack(stack_a, NULL);
+		rotate_stack(stack_a, NULL, STACK_A);
+	sorter(stack_a, stack_b, size - top_half_len, initial_size);
+	i = -1;
+	while (++i < top_half_len)
+		reverse_rotate_stack(stack_a, NULL, STACK_A);
+	// if (size == initial_size)
+	// {
+	// 	i = -1;
+	// 	while (++i < size - 2)
+	// 		reverse_rotate_stack(stack_a, NULL, STACK_A);
+	// }
 }

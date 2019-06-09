@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 01:49:30 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/08 10:08:06 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/09 06:13:36 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,29 @@
 # define ANSI_BBLUE		"\x1b[1m\x1b[34m"
 # define ANSI_BCYAN		"\x1b[1m\x1b[36m"
 # define NB_INSTRUCTIONS	11
+# define NO_WRITE			-1
 # define STACK_A			0
 # define STACK_B			1
 # define BOTH				2
-
+# define VISU				(1 << 0)
 typedef struct	s_instruction
 {
 	char			*op;
 	int				dest;
-	void			(*function)(t_list **stack_a, t_list **unused);
+	void			(*function)(t_list **stack_a, t_list **unused, char dest);
 }				t_instruction;
 
 /*
 **	PARSE_ARGS.C
 */
-int		parse_args(int ac, char **av, t_list **head);
+int		parse_args(int ac, char **av, t_list **head, char *flags);
 
 /*
 **	READ_INSTRUCTIONS.C
 */
 int		read_instructions(t_list **head);
+void	write_instructions(void			(*function)(t_list **stack_a,
+							t_list **unused, char write), char dest);
 
 /*
 **	UTILS.C
@@ -54,15 +57,15 @@ int		is_sorted(t_list *stack);
 /*
 **	EXECUTE_INSTRUCTIONS.C
 */
-void	swap_two(t_list **stack, t_list **unused);
-void	push_to_second(t_list **first, t_list **second);
-void	reverse_rotate_stack(t_list **stack, t_list **unused);
-void	rotate_stack(t_list **stack, t_list **unused);
+void	swap_two(t_list **stack, t_list **unused, char write);
+void	push(t_list **first, t_list **second, char write);
+void	reverse_rotate_stack(t_list **stack, t_list **unused, char write);
+void	rotate_stack(t_list **stack, t_list **unused, char write);
 void	execute_instructions(t_list **stack_a, t_list **stack_b,
-														t_list *instructions);
+											t_list *instructions);
 /*
 ** SORTER.C
 */
-void		sorter(t_list **stack_a, t_list **stack_b, int size);
+void		sorter(t_list **stack_a, t_list **stack_b, int size, int initial_size);
 
 #endif

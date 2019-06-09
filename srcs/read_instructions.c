@@ -6,7 +6,7 @@
 /*   By: Mohamed <Mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 12:20:59 by Mohamed           #+#    #+#             */
-/*   Updated: 2019/06/08 09:35:33 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/09 06:13:30 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,30 @@ static const t_instruction	 *get_existing_instructions()
 		{"sa", STACK_A, &swap_two},
 		{"sb", STACK_B, &swap_two},
 		{"ss", BOTH, &swap_two},
-		{"pa", STACK_A, &push_to_second},
-		{"pb", STACK_B, &push_to_second},
+		{"pa", STACK_A, &push},
+		{"pb", STACK_B, &push},
 		{"ra", STACK_A, &rotate_stack},
 		{"rb", STACK_B, &rotate_stack},
 		{"rr", BOTH, &rotate_stack},
 	};
 	return (tab);
+}
+
+void			write_instructions(
+		void			(*function)(t_list **stack_a, t_list **unused,
+			 											char write), char dest)
+{
+	int						i;
+	const t_instruction		*instructions;
+
+	i = -1;
+	instructions = get_existing_instructions();
+	while (++i < NB_INSTRUCTIONS)
+		if(instructions[i].function == function && instructions[i].dest == dest)
+		{
+			ft_putendl(instructions[i].op);
+			return ;
+		}
 }
 
 /*
