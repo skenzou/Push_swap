@@ -6,7 +6,7 @@
 /*   By: Mohamed <Mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 12:20:59 by Mohamed           #+#    #+#             */
-/*   Updated: 2019/06/09 06:13:30 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/10 12:41:38 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 static const t_instruction	 *get_existing_instructions()
 {
 	static const t_instruction tab[NB_INSTRUCTIONS] = {
-		{"rra", STACK_A, &reverse_rotate_stack},
-		{"rrb", STACK_B, &reverse_rotate_stack},
-		{"rrr", BOTH, &reverse_rotate_stack},
-		{"sa", STACK_A, &swap_two},
-		{"sb", STACK_B, &swap_two},
-		{"ss", BOTH, &swap_two},
-		{"pa", STACK_A, &push},
-		{"pb", STACK_B, &push},
-		{"ra", STACK_A, &rotate_stack},
-		{"rb", STACK_B, &rotate_stack},
-		{"rr", BOTH, &rotate_stack},
+		{"rra", STACK_A, &ft_reverse_rotate},
+		{"rrb", STACK_B, &ft_reverse_rotate},
+		{"rrr", BOTH, &ft_reverse_rotate},
+		{"sa", STACK_A, &ft_swap},
+		{"sb", STACK_B, &ft_swap},
+		{"ss", BOTH, &ft_swap},
+		{"pa", STACK_A, &ft_push},
+		{"pb", STACK_B, &ft_push},
+		{"ra", STACK_A, &ft_rotate},
+		{"rb", STACK_B, &ft_rotate},
+		{"rr", BOTH, &ft_rotate},
 	};
 	return (tab);
 }
@@ -47,9 +47,6 @@ void			write_instructions(
 		}
 }
 
-/*
-** Tells whether input is a existing instruction.
-*/
 static int		add_instruction(char *input, t_list **head)
 {
 	int						i;

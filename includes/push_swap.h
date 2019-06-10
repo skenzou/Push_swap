@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 01:49:30 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/09 08:10:20 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/10 12:00:51 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ int		is_sorted(t_list *stack);
 /*
 **	EXECUTE_INSTRUCTIONS.C
 */
-void	swap_two(t_list **stack, t_list **unused, char write);
-void	push(t_list **first, t_list **second, char write);
-void	reverse_rotate_stack(t_list **stack, t_list **unused, char write);
-void	rotate_stack(t_list **stack, t_list **unused, char write);
+void	ft_swap(t_list **stack, t_list **unused, char write);
+void	ft_push(t_list **first, t_list **second, char write);
+void	ft_reverse_rotate(t_list **stack, t_list **unused, char write);
+void	ft_rotate(t_list **stack, t_list **unused, char write);
 void	execute_instructions(t_list **stack_a, t_list **stack_b,
 											t_list *instructions);
 /*
@@ -72,5 +72,19 @@ void	execute_instructions(t_list **stack_a, t_list **stack_b,
 */
 void	sorter(t_list **stack_a, t_list **stack_b, int size, int initial_size);
 void	sort_small(t_list **stack, char dest);
+/*
+** SMALL_SORT.C
+*/
+void	ft_sort_2(t_list **stack, char dest);
+void	ft_sort_3(t_list **stack, char dest);
+void	ft_sort_4(t_list **stack_a, t_list **stack_b, char dest);
+void	ft_sort_5(t_list **stack_a, t_list **stack_b, char dest);
+/*
+** SORTER_UTILS.C
+*/
+int		ft_get_min_index(t_list *stack);
+int		ft_get_max_index(t_list *stack);
+int		get_last(t_list *list);
+int		is_rev_sorted(t_list *stack);
 
 #endif

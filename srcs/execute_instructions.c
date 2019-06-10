@@ -6,18 +6,18 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 13:34:56 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/09 06:13:11 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/10 12:03:14 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap_two(t_list **stack, t_list **unused, char dest)
+void	ft_swap(t_list **stack, t_list **unused, char dest)
 {
 	t_list *second;
 
 	if (dest >= 0)
-		write_instructions(&swap_two, dest);
+		write_instructions(&ft_swap, dest);
 	(void)unused;
 	if (!*stack || !(*stack)->next)
 		return ;
@@ -27,12 +27,12 @@ void	swap_two(t_list **stack, t_list **unused, char dest)
 	*stack = second;
 }
 
-void	push(t_list **first, t_list **second, char dest)
+void	ft_push(t_list **first, t_list **second, char dest)
 {
 	t_list *tmp;
 
 	if (dest >= 0)
-		write_instructions(&push, dest);
+		write_instructions(&ft_push, dest);
 	if (!*second)
 		return ;
 	tmp = *second;
@@ -40,12 +40,12 @@ void	push(t_list **first, t_list **second, char dest)
 	ft_lstadd(first, tmp);
 }
 
-void	reverse_rotate_stack(t_list **stack, t_list **unused, char dest)
+void	ft_reverse_rotate(t_list **stack, t_list **unused, char dest)
 {
 	t_list *list;
 
 	if (dest >= 0)
-		write_instructions(&reverse_rotate_stack, dest);
+		write_instructions(&ft_reverse_rotate, dest);
 	(void)unused;
 	if (!*stack || !(*stack)->next)
 		return ;
@@ -58,12 +58,12 @@ void	reverse_rotate_stack(t_list **stack, t_list **unused, char dest)
 	list->next = NULL;
 }
 
-void	rotate_stack(t_list **stack, t_list **unused, char dest)
+void	ft_rotate(t_list **stack, t_list **unused, char dest)
 {
 	t_list *tmp;
 
 	if (dest >= 0)
-		write_instructions(&rotate_stack, dest);
+		write_instructions(&ft_rotate, dest);
 	(void)unused;
 	if (!*stack || !(*stack)->next)
 		return ;
