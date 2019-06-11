@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 10:04:50 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/10 12:41:17 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/11 16:05:15 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ static int			find_median(t_list *stack, int size)
 		half = (size / 2) -1;
 	else
 		half = size / 2;
-	if (size >= 400)
-		half = size / 3;
+	// if (size >= 400)
+	// 	half = size / 3;
 	list = stack;
 	i = -1;
 	while (list && ++i < size)
@@ -96,7 +96,7 @@ void launch_sort(int size, t_list **stack_a, t_list **stack_b, char dest)
 		else if (size == 5)
 			ft_sort_5(stack_a, stack_b, STACK_A);
 	}
-	else if (dest == STACK_B)
+	else if (dest == STACK_B && !is_rev_sorted(*stack_b))
 	{
 		if (size <= 3)
 			ft_sort_3(stack_b, STACK_B);

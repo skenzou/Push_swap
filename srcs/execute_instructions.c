@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 13:34:56 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/10 12:03:14 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/11 18:05:44 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	ft_rotate(t_list **stack, t_list **unused, char dest)
 }
 
 void		execute_instructions(t_list **stack_a, t_list **stack_b,
-														t_list *instructions)
+								t_list *instructions)
 {
 	t_instruction *instruction;
 

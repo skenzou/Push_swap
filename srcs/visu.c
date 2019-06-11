@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   visu.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/31 01:20:57 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/11 08:49:16 by midrissi         ###   ########.fr       */
+/*   Created: 2019/06/11 08:14:21 by midrissi          #+#    #+#             */
+/*   Updated: 2019/06/11 11:35:04 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "visu.h"
 
 int		main(int ac, char **av)
 {
-	t_list	*instructions;
-	t_list	*stack_a;
-	t_list	*stack_b;
-	char	flags;
+	t_visu		v;
 
-	if (parse_args(ac, av, &stack_a, &flags) == -1)
-		return (!ft_lstdestroy(&stack_a));
-	if (read_instructions(&instructions))
-		return (ft_lstdestroy(&instructions) == ft_lstdestroy(&stack_a));
-	execute_instructions(&stack_a, &stack_b, instructions, NORMAL);
-	if (flags & VISU)
-		print_lists(stack_a, stack_b, NULL);
-	destroy_lists(stack_a, stack_b, instructions);
-	return (0);
+	if (ft_init_visu(&v, ac, av) == -1)
+		return (-1);
+	mlx_loop(v.mlx_ptr);
 }

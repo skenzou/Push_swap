@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 13:56:36 by midrissi          #+#    #+#             */
-/*   Updated: 2019/05/30 20:16:52 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/11 13:08:07 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ void			ft_lstadd(t_list **alst, t_list *new);
 int				ft_lstpushback(t_list **begin, t_list *new);
 void			ft_lstrev(t_list **alst);
 int				ft_lstdestroy(t_list **lst);
+size_t			ft_lstsize(t_list *list);
 
 typedef struct	s_format
 {

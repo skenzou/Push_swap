@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 01:49:30 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/10 12:00:51 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/11 18:05:32 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 # define BOTH				2
 # define VISU				(1 << 0)
 # define FROM_FILE			(1 << 1)
+# define SLOW				1
+# define NORMAL				2
 
 typedef struct	s_instruction
 {
@@ -86,5 +88,10 @@ int		ft_get_min_index(t_list *stack);
 int		ft_get_max_index(t_list *stack);
 int		get_last(t_list *list);
 int		is_rev_sorted(t_list *stack);
+/*
+** SORTER_UTILS.C
+*/
+int		ft_get_max_value(t_list *stack);
+int		ft_get_min_value(t_list *stack);
 
 #endif
