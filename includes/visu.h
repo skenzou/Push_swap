@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 08:12:49 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/12 04:56:30 by Mohamed          ###   ########.fr       */
+/*   Updated: 2019/06/12 18:34:37 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,14 @@
 # define SPACE			49
 # define RIGHTARROW		124
 # define LEFTARROW		123
-# define WIDTH			2500
-# define HALF_WIDTH		1200
-# define HEIGHT			1500
+# define WIDTH			1920
+# define ITEM_WIDTH		860
+# define MIDDLE			200
+# define HEIGHT			1080
+# define WHITE			0xFFFFFF
+# define RAINBOW		0
+# define CLERP			1
+# define RKEY			15
 
 typedef struct		s_image
 {
@@ -53,6 +58,7 @@ typedef struct		s_visu
 	int					range;
 	char				flags;
 	char				pause;
+	char				colormode;
 }					t_visu;
 
 typedef struct		s_item
@@ -82,5 +88,6 @@ void			ft_create_image(t_visu *visu, int width, int height);
 ** FT_DRAW.C
 */
 void			ft_draw(t_visu *visu);
+void			ft_put_infos(t_visu *visu);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/03 09:24:41 by midrissi          #+#    #+#              #
-#    Updated: 2019/06/12 05:11:14 by Mohamed          ###   ########.fr        #
+#    Updated: 2019/06/12 08:24:41 by midrissi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ OBJ_PATH		= ./obj/
 LIBFT_PATH		= libft/
 LIBFT_NAME		= libft.a
 LIBFT 			= $(addprefix $(LIBFT_PATH),$(LIBFT_NAME))
-INC_PATH		= ./includes
+INC_PATH		= ./includes/
 INC_NAME		= push_swap.h visu.h
 INC_FPATH		= $(addprefix $(INC_PATH),$(INC_NAME))
 INC				= $(addprefix -I,$(INC_PATH))
@@ -100,22 +100,22 @@ $(PUSH_SWAP): $(OBJ) $(PSOBJ) $(CHECKEROBJ) $(VISUOBJ)
 		@printf "$(_BOLD)$(_RED)./$(VISU) is ready for use\n$(_END)"
 
 #PUSH_SWAP
-$(PSOBJ) : $(PUSH_SWAP_FPATH)
+$(PSOBJ) : $(PUSH_SWAP_FPATH) $(INC_FPATH)
 		@$(CC) $(C_FLAGS) $(INC) -o $@ -c $<
 		@printf "\r\033[K$(MSG) $(_BOLD)$(_CYAN)%-$(LONGEST)s\$(_END)" $(notdir $<)
 
 #CHECKER
-$(CHECKEROBJ) : $(CHECKER_FPATH)
+$(CHECKEROBJ) : $(CHECKER_FPATH) $(INC_FPATH)
 		@$(CC) $(C_FLAGS) $(INC) -o $@ -c $<
 		@printf "\r\033[K$(MSG) $(_BOLD)$(_CYAN)%-$(LONGEST)s\$(_END)" $(notdir $<)
 
 #VISU
-$(VISUOBJ) : $(VISU_FPATH)
+$(VISUOBJ) : $(VISU_FPATH) $(INC_FPATH)
 		@$(CC) $(C_FLAGS) $(INC) $(MLX_INC) -o $@ -c $<
 		@printf "\r\033[K$(MSG) $(_BOLD)$(_CYAN)%-$(LONGEST)s\$(_END)" $(notdir $<)
 
 #SRCS
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c $(INC_FPATH)
 		@mkdir -p $(OBJ_PATH)
 		@$(CC) $(C_FLAGS) $(INC) $(MLX_INC) -o $@ -c $<
 		@printf "\r\033[K$(MSG) $(_BOLD)$(_CYAN)%-$(LONGEST)s\$(_END)" $(notdir $<)

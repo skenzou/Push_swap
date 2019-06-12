@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 08:35:21 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/11 14:06:47 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/12 12:49:09 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int			refresh(t_visu *visu)
 	ft_create_image(visu, WIDTH, HEIGHT);
 	ft_draw(visu);
 	mlx_put_image_to_window(visu->mlx_ptr, visu->win_ptr, visu->img.ptr, 0, 0);
+	ft_put_infos(visu);
 	return (1);
 }
 
@@ -97,7 +98,10 @@ int			key_event(int keycode, t_visu *visu)
 	}
 	if (keycode == SPACE)
 		visu->pause = !visu->pause;
-	if (keycode == RIGHTARROW)
+	if (keycode == RKEY)
+		visu->colormode = !visu->colormode;
+	if (keycode == RIGHTARROW &&
+				visu->curr_instruction < (size_t)visu->instructions_size - 1)
 	{
 		ft_execute_instruction(visu->instructions[visu->curr_instruction],
 		&visu->stack_a, &visu->stack_b);

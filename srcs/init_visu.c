@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 08:20:10 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/12 05:03:21 by Mohamed          ###   ########.fr       */
+/*   Updated: 2019/06/12 12:48:04 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ int					ft_init_color_table(t_visu *visu)
 	color[2] = 0;
 	while (++i < visu->stack_size)
 	{
-		(color[1] == 0 && color[0] == 255) && (color[2] += 5);
-		(color[1] == 255 && color[0] == 0) && (color[2] -= 5);
-		(color[1] == 0 && color[2] == 255) && (color[0] -= 5);
-		(color[1] == 255 && color[2] == 0) && (color[0] += 5);
-		(color[0] == 0 && color[2] == 255) && (color[1] += 5);
-		(color[0] == 255 && color[2] == 0) && (color[1] -= 5);
+		(color[1] == 0 && color[0] == 255) && (color[2] += 3);
+		(color[1] == 255 && color[0] == 0) && (color[2] -= 3);
+		(color[1] == 0 && color[2] == 255) && (color[0] -= 3);
+		(color[1] == 255 && color[2] == 0) && (color[0] += 3);
+		(color[0] == 0 && color[2] == 255) && (color[1] += 3);
+		(color[0] == 255 && color[2] == 0) && (color[1] -= 3);
 		rgb = (color[0] << 16) + (color[1] << 8) + color[2];
 		visu->color_table[i] = rgb;
 	}
@@ -137,6 +137,7 @@ int					ft_init_visu(t_visu *visu, int ac, char **av)
 	if (ft_lst_to_tab(visu, instructions))
 		return (ft_free_visu(visu));
 	visu->pause = 1;
+	visu->colormode = CLERP;
 	visu->item_max_height = HEIGHT / visu->stack_size;
 	visu->min_value = ft_get_min_value(visu->stack_a);
 	visu->max_value = ft_get_max_value(visu->stack_a);
