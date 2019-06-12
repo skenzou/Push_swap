@@ -6,7 +6,7 @@
 #    By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/03 09:24:41 by midrissi          #+#    #+#              #
-#    Updated: 2019/06/11 11:50:59 by midrissi         ###   ########.fr        #
+#    Updated: 2019/06/12 05:11:14 by Mohamed          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -132,7 +132,8 @@ clean_obj:
 fclean: clean_obj
 		@rm -f $(PUSH_SWAP)
 		@rm -f $(CHECKER)
-		@echo "$(_BOLD)$(_RED)Successfully removed ${PUSH_SWAP} and ${CHECKER} from ${PUSH_SWAP}$(_END)"
+		@rm -f $(VISU)
+		@echo "$(_BOLD)$(_RED)Successfully removed ${PUSH_SWAP}, ${CHECKER} and ${VISU} from ${PUSH_SWAP}$(_END)"
 		@make -C $(LIBFT_PATH) fclean
 		@make -C $(MLX_PATH) clean
 
