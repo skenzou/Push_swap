@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 08:20:10 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/11 19:02:20 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/12 05:03:21 by Mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,13 @@ int					ft_init_color_table(t_visu *visu)
 int					ft_count_smaller(t_list *list, int value)
 {
 	int count;
+	int content;
 
 	count = 0;
 	while (list)
 	{
-		if (*((int *)list->content) < value)
+		ft_memcpy((void *)&content, list->content, sizeof(int));
+		if (content < value)
 			count++;
 		list = list->next;
 	}
@@ -145,8 +147,7 @@ int					ft_init_visu(t_visu *visu, int ac, char **av)
 		return (ft_free_visu(visu));
 	if (ft_init_colors(visu) == -1)
 		return (ft_free_visu(visu));
-	// init_color_table(visu);
-	// init_thread_data(w);
+	free(visu->color_table);
 	// mlx_mouse_hook(visu->win_ptr, &menu_event, w);
 	mlx_hook(visu->win_ptr, 2, 1L << 0, &key_event, visu);
 	mlx_loop_hook(visu->mlx_ptr, &refresh, visu);

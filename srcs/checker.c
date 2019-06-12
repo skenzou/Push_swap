@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 01:20:57 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/11 08:49:16 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/12 03:09:44 by Mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		main(int ac, char **av)
 		return (!ft_lstdestroy(&stack_a));
 	if (read_instructions(&instructions))
 		return (ft_lstdestroy(&instructions) == ft_lstdestroy(&stack_a));
-	execute_instructions(&stack_a, &stack_b, instructions, NORMAL);
+	execute_instructions(&stack_a, &stack_b, instructions);
 	if (flags & VISU)
 		print_lists(stack_a, stack_b, NULL);
 	destroy_lists(stack_a, stack_b, instructions);

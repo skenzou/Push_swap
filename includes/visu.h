@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 08:12:49 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/11 18:13:08 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/12 04:56:30 by Mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ typedef struct		s_visu
 
 typedef struct		s_item
 {
-	int					color;
 	int					value;
+	int					color;
 }					t_item;
 
 
