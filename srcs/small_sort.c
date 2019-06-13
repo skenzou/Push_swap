@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 11:24:53 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/10 12:23:21 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/13 20:33:41 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,12 @@ void	ft_sort_4(t_list **stack_a, t_list **stack_b, char dest)
 		else
 			while (i++ < 4)
 				ft_reverse_rotate(stack_a, NULL, dest);
-		ft_push(stack_b, stack_a, STACK_B);
-		ft_sort_3(stack_a, STACK_A);
-		ft_push(stack_a, stack_b, STACK_A);
+		if (!is_sorted(*stack_a))
+		{
+			ft_push(stack_b, stack_a, STACK_B);
+			ft_sort_3(stack_a, STACK_A);
+			ft_push(stack_a, stack_b, STACK_A);
+		}
 	}
 	else if (dest == STACK_B)
 	{
@@ -86,9 +89,12 @@ void	ft_sort_4(t_list **stack_a, t_list **stack_b, char dest)
 		else
 			while (i++ < 4)
 				ft_reverse_rotate(stack_b, NULL, dest);
-		ft_push(stack_a, stack_b, STACK_A);
-		ft_sort_3(stack_b, STACK_B);
-		ft_push(stack_b, stack_a, STACK_B);
+		if (!is_rev_sorted(*stack_b))
+		{
+			ft_push(stack_a, stack_b, STACK_A);
+			ft_sort_3(stack_b, STACK_B);
+			ft_push(stack_b, stack_a, STACK_B);
+		}
 	}
 }
 
@@ -105,9 +111,12 @@ void	ft_sort_5(t_list **stack_a, t_list **stack_b, char dest)
 		else
 			while (i++ < 5)
 				ft_reverse_rotate(stack_a, NULL, dest);
-		ft_push(stack_b, stack_a, STACK_B);
-		ft_sort_4(stack_a, stack_b, STACK_A);
-		ft_push(stack_a, stack_b, STACK_A);
+		if (!is_sorted(*stack_a))
+		{
+			ft_push(stack_b, stack_a, STACK_B);
+			ft_sort_4(stack_a, stack_b, STACK_A);
+			ft_push(stack_a, stack_b, STACK_A);
+		}
 	}
 	else if (dest == STACK_B)
 	{
@@ -118,8 +127,11 @@ void	ft_sort_5(t_list **stack_a, t_list **stack_b, char dest)
 		else
 			while (i++ < 5)
 				ft_reverse_rotate(stack_b, NULL, dest);
-		ft_push(stack_a, stack_b, STACK_A);
-		ft_sort_4(stack_a, stack_b, STACK_B);
-		ft_push(stack_b, stack_a, STACK_B);
+		if (!is_rev_sorted(*stack_b))
+		{
+			ft_push(stack_a, stack_b, STACK_A);
+			ft_sort_4(stack_a, stack_b, STACK_B);
+			ft_push(stack_b, stack_a, STACK_B);
+		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 01:49:30 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/11 18:05:32 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/13 16:23:33 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	execute_instructions(t_list **stack_a, t_list **stack_b,
 /*
 ** SORTER.C
 */
-void	sorter(t_list **stack_a, t_list **stack_b, int size, int initial_size);
+void	sorter(t_list **stack_a, t_list **stack_b, int size, int initial_size, int first);
 void	sort_small(t_list **stack, char dest);
 /*
 ** SMALL_SORT.C
@@ -93,5 +93,9 @@ int		is_rev_sorted(t_list *stack);
 */
 int		ft_get_max_value(t_list *stack);
 int		ft_get_min_value(t_list *stack);
+/*
+** SORT_TAB.C
+*/
+void		sort_tab(int *tab, int size);
 
 #endif

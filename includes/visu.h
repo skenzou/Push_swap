@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 08:12:49 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/12 18:34:37 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/13 06:05:31 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define RAINBOW		0
 # define CLERP			1
 # define RKEY			15
+# define TAB			48
 
 typedef struct		s_image
 {
@@ -49,6 +50,7 @@ typedef struct		s_visu
 	int					stack_size;
 	t_list				*stack_a;
 	t_list				*stack_b;
+	t_list				*backup_list;
 	int					*color_table;
 	t_instruction		**instructions;
 	size_t				curr_instruction;
@@ -73,6 +75,7 @@ typedef struct		s_item
 */
 int				ft_init_visu(t_visu *visu, int ac, char **av);
 int				ft_free_visu(t_visu *visu);
+void 			ft_create_backup(t_visu *visu);
 /*
 **	EVENTS.C
 */

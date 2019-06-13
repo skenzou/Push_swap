@@ -6,7 +6,7 @@
 #    By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/03 09:24:41 by midrissi          #+#    #+#              #
-#    Updated: 2019/06/12 08:24:41 by midrissi         ###   ########.fr        #
+#    Updated: 2019/06/13 16:22:05 by midrissi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ PUSH_SWAP		= push_swap
 CHECKER			= checker
 VISU			= visu
 CC				= gcc
-C_FLAGS			= -Wall -Wextra -Werror -Ofast
+C_FLAGS			= -Wall -Wextra -Werror -O3 #-fsanitize=address
 OBJ_PATH		= ./obj/
 LIBFT_PATH		= libft/
 LIBFT_NAME		= libft.a
@@ -59,7 +59,8 @@ MLX_INC			= -I $(MLX_PATH)
 #SRCS
 SRC_NAME		= parse_args.c read_instructions.c utils.c sorter.c \
 					execute_instructions.c sorter_utils.c small_sort.c \
-					image.c events.c draw.c sorter_utils2.c init_visu.c
+					image.c events.c draw.c sorter_utils2.c init_visu.c \
+					sort_tab.c
 SRC_PATH		= ./srcs/
 SRC				= $(addprefix $(SRC_PATH),$(SRC_NAME))
 OBJ_NAME		= $(SRC_NAME:.c=.o)
@@ -96,7 +97,7 @@ $(PUSH_SWAP): $(OBJ) $(PSOBJ) $(CHECKEROBJ) $(VISUOBJ)
 		@printf "\r\033[K$(_BOLD)$(_RED)./$(PUSH_SWAP) is ready for use\n$(_END)"
 		@$(CC) $(C_FLAGS) $(MLX_LINK) $(OBJ) $(CHECKEROBJ) $(LIBFT) -o $(CHECKER)
 		@printf "$(_BOLD)$(_RED)./$(CHECKER) is ready for use\n$(_END)"
-		@$(CC) $(LIBFT) $(MLX_LINK) $(OBJ) $(VISUOBJ)  -o $(VISU)
+		@$(CC) $(C_FLAGS) $(LIBFT) $(MLX_LINK) $(OBJ) $(VISUOBJ)  -o $(VISU)
 		@printf "$(_BOLD)$(_RED)./$(VISU) is ready for use\n$(_END)"
 
 #PUSH_SWAP

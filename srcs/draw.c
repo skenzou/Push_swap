@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 09:33:38 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/12 13:00:03 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/13 20:19:05 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void		ft_draw_item(t_visu *visu, int value, int y_offset, int x_offset,
 				ft_put_pixel_img(&visu->img, ITEM_WIDTH - i, j + y_offset, color);
 			else
 				ft_put_pixel_img(&visu->img, i, j + y_offset, color);
-
 }
 
 void		ft_draw_middle(t_visu *visu)
@@ -61,6 +60,23 @@ void		ft_draw_middle(t_visu *visu)
 	}
 }
 
+void		ft_print_next_instructions(t_visu *visu)
+{
+	int		i;
+	int		j;
+	int		offset;
+
+	i = visu->curr_instruction;
+	j = -1;
+	offset = 0;
+	while ((size_t)i < visu->instructions_size && ++j < 4)
+	{
+		mlx_string_put(visu->mlx_ptr, visu->win_ptr,
+		ITEM_WIDTH + 85, 220 + offset, WHITE, visu->instructions[i++]->op);
+		offset += 20;
+	}
+}
+
 void		ft_put_infos(t_visu *visu)
 {
 	char *size;
@@ -78,21 +94,35 @@ void		ft_put_infos(t_visu *visu)
 	if (visu->pause)
 		mlx_string_put(visu->mlx_ptr, visu->win_ptr,
 		ITEM_WIDTH + 65, 10, WHITE, "PAUSED");
-	mlx_string_put(visu->mlx_ptr, visu->win_ptr,  ITEM_WIDTH + 30, 100, WHITE,
-	"Instructions");
-	mlx_string_put(visu->mlx_ptr, visu->win_ptr,  ITEM_WIDTH + 50, 120, WHITE,
-	instructions);
-	mlx_string_put(visu->mlx_ptr, visu->win_ptr, ITEM_WIDTH + 50, 180, WHITE,
-	"Current");
-	mlx_string_put(visu->mlx_ptr, visu->win_ptr, ITEM_WIDTH + 50, 200, WHITE,
-	current);
-	mlx_string_put(visu->mlx_ptr, visu->win_ptr, ITEM_WIDTH + 50, 240, WHITE,
-	"Numbers");
-	mlx_string_put(visu->mlx_ptr, visu->win_ptr, ITEM_WIDTH + 50, 260, WHITE,
+	mlx_string_put(visu->mlx_ptr, visu->win_ptr, ITEM_WIDTH + 5, 50, WHITE,
+	"A                 B");
+	mlx_string_put(visu->mlx_ptr, visu->win_ptr, ITEM_WIDTH + 5, 100, WHITE,
+	"Size:");
+	mlx_string_put(visu->mlx_ptr, visu->win_ptr, ITEM_WIDTH + 60, 100, WHITE,
 	size);
+	mlx_string_put(visu->mlx_ptr, visu->win_ptr,  ITEM_WIDTH + 5, 140, WHITE,
+	"Moves:");
+	mlx_string_put(visu->mlx_ptr, visu->win_ptr,  ITEM_WIDTH + 70, 140, WHITE,
+	instructions);
+	mlx_string_put(visu->mlx_ptr, visu->win_ptr, ITEM_WIDTH + 5, 180, WHITE,
+	"Current:");
+	mlx_string_put(visu->mlx_ptr, visu->win_ptr, ITEM_WIDTH + 90, 180, WHITE,
+	current);
+	ft_print_next_instructions(visu);
 	free(current);
 	free(size);
 	free(instructions);
+// 		 t_list *list;
+// 	list = visu->stack_a;
+// 	 int i = 0;
+//
+// 	while (list)
+// 	{
+// 		mlx_string_put(visu->mlx_ptr, visu->win_ptr, 10 , 1 + i, WHITE,
+// 		ft_itoa(((t_item *)list->content)->value));
+// 		i += 13;
+// 		list = list->next;
+// 	}
 }
 
 void		ft_draw(t_visu *visu)
@@ -119,7 +149,7 @@ void		ft_draw(t_visu *visu)
 		if (stack_b)
 		{
 			ft_draw_item(visu, ((t_item *)stack_b->content)->value,
-					offset_b, ITEM_WIDTH + MIDDLE, ((t_item *)stack_b->content)->color);
+			offset_b, ITEM_WIDTH + MIDDLE, ((t_item *)stack_b->content)->color);
 			offset_b += visu->item_max_height;
 			stack_b = stack_b->next;
 		}

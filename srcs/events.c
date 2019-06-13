@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 08:35:21 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/12 12:49:09 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/13 06:22:48 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ static void		ft_execute_instruction(t_instruction *instruction,
 
 int			refresh(t_visu *visu)
 {
+	if (visu->curr_instruction == visu->instructions_size)
+		visu->pause = 1;
 	if (visu->curr_instruction < visu->instructions_size && !visu->pause)
 	{
 		ft_execute_instruction(visu->instructions[visu->curr_instruction],
@@ -88,6 +90,15 @@ static void		ft_go_back(t_visu *visu)
 		}
 }
 
+void		ft_reset(t_visu *visu)
+{
+	destroy_lists(visu->stack_a, visu->stack_b, NULL);
+	visu->stack_a = visu->backup_list;
+	visu->stack_b = NULL;
+	visu->curr_instruction = 0;
+	visu->backup_list = NULL;
+	ft_create_backup(visu);
+}
 
 int			key_event(int keycode, t_visu *visu)
 {
@@ -98,8 +109,10 @@ int			key_event(int keycode, t_visu *visu)
 	}
 	if (keycode == SPACE)
 		visu->pause = !visu->pause;
-	if (keycode == RKEY)
+	if (keycode == TAB)
 		visu->colormode = !visu->colormode;
+	if (keycode == RKEY)
+		ft_reset(visu);
 	if (keycode == RIGHTARROW &&
 				visu->curr_instruction < (size_t)visu->instructions_size - 1)
 	{
