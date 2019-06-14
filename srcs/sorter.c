@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 10:04:50 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/13 22:54:38 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/14 19:36:04 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,11 @@ static int			find_median(t_list *stack, int size)
 	int i;
 
 	if (size % 2 == 0)
-		half = (size / 2) -1;
+		half = (size / 2);
 	else
 		half = size / 2;
+	// if (size < 100 && size > 40)
+	// 	half = 20;
 	// if (size < 100)
 	// 	half = size * 3/ 4;
 	// if (size >= 300)
@@ -224,46 +226,167 @@ int				pos_min(t_list *stack)
 	return (pos_min);
 }
 
+int				get_next_min(t_list *list, int oldmin)
+{
+	int min;
+	int i;
+
+	if (oldmin != 0)
+		min = *(int *)list->content;
+	else
+		min = *(int *)list->next->content;
+	i = 0;
+	while (list)
+	{
+		if (*(int *)list->content < min && i != oldmin)
+			min = *(int *)list->content;
+		i++;
+		list = list->next;
+	}
+	return (min);
+}
+
 void            sortsmall(t_list **stack_a, t_list **stack_b, int size, int initial)
 {
 	int         pos;
 	int         i;
 	int			best_choice;
 
-	if (size <= 1)
+
+	if (size == 2)
 	{
-		while (size != initial)
+		ft_sort_2(stack_b, STACK_B);
+		ft_push(stack_a, stack_b, STACK_A);
+		ft_push(stack_a, stack_b, STACK_A);
+		ft_rotate(stack_a, stack_b, STACK_A);
+		ft_rotate(stack_a, stack_b, STACK_A);
+		return ;
+	}
+	if (size <= 1 && *stack_b)
+	{
+		// print_lists(*stack_a, *stack_b, NULL);
+		int lstsize = ft_lstsize(*stack_b);
+		int j = -1;
+		while (++j < lstsize)
 		{
 			ft_push(stack_a, stack_b, STACK_A);
-			size++;
+			ft_rotate(stack_a, NULL, STACK_A);
 		}
+		// print_lists(*stack_a, *stack_b, NULL);
 		return ;
 	}
 	pos = pos_min(*stack_b);
+	// print_list(*stack_b, 2);
+	// ft_printf("pos of min: %d\n", pos);
 	i = -1;
 	best_choice = size / 2;
+	// ft_printf("best_choice: %d\n", best_choice);
 	//ft_printf("best_choice = %d\n", best_choice);
+	int next_min = get_next_min(*stack_b, pos);
+	int count = 0;
+	// ft_printf("next_min: %d\n", next_min);
+	// print_list(*stack_b, 2);
+	int min_value = ft_get_min_value(*stack_b);
 	if (pos > best_choice)
 	{
 		// state_stack(&d->a, 'a');
 		// ft_printf("pos: %d\n", pos);
 		// ft_printf("d->len_a: %d\n", d->len_a);
-		while (++i < size - pos)
+
+		while (*stack_b && min_value != *(int *)(*stack_b)->content)
+		{
+			if (*stack_b && count < 2 && next_min == *(int *)(*stack_b)->content)
+			{
+				// ft_printf("0001\n");
+				count++;
+				ft_push(stack_a, stack_b, STACK_A);
+				// ft_printf("00002\n");
+				if (count == 2)
+					ft_swap(stack_a, NULL, STACK_A);
+				// ft_printf("0003\n");
+				get_next_min(*stack_b, pos);
+				// i++;
+				continue ;
+				// ft_printf("0004\n");
+			}
 			ft_reverse_rotate(stack_b, NULL, STACK_B);
+		}
 		// state_stack(&d->a, 'a');
 	}
 	else
 	{
-		while (++i < pos)
-			ft_reverse_rotate(stack_b, NULL, STACK_B);
+		while (*stack_b && min_value != *(int *)(*stack_b)->content)
+		{
+			if (*stack_b && count < 2 && next_min == *(int *)(*stack_b)->content)
+			{
+				count++;
+				// ft_printf("11111\n");
+				ft_push(stack_a, stack_b, STACK_A);
+				// ft_printf("11112\n");
+				if (count == 2)
+					ft_swap(stack_a, NULL, STACK_A);
+				// ft_printf("11113\n");
+				get_next_min(*stack_b, pos);
+				// i++;
+				continue ;
+				// ft_printf("11114\n");
+			}
+			ft_rotate(stack_b, NULL, STACK_B);
+		}
 	}
-	ft_push(stack_a, stack_b, STACK_A);
-	ft_rotate(stack_a, NULL, STACK_A);
+	// ft_printf("NB to push: %d\n", *(int *)(*stack_b)->content);
+	// print_lists(*stack_a, *stack_b, NULL);
 	size--;
-	sortsmall(stack_a, stack_b, size, initial);
+	ft_push(stack_a, stack_b, STACK_A);
+	int min = ft_get_min_index(*stack_b);
+	if (*stack_b && min < size / 2)
+	{
+		ft_rotate(stack_a, NULL, BOTH);
+		ft_rotate(stack_b, NULL, NO_WRITE);
+	}
+	else
+		ft_rotate(stack_a, NULL, STACK_A);
+	if (count)
+	{
+		// ft_printf("test\n");
+		while (count--)
+		{
+			ft_rotate(stack_a, NULL, STACK_A);
+			size--;
+		}
+	}
+	if (is_rev_sorted(*stack_b))
+	{
+		int k = 0;
+		while (*stack_b)
+		{
+			ft_push(stack_a, stack_b, STACK_A);
+			k++;
+		}
+		while (k--)
+			ft_rotate(stack_a, NULL, STACK_A);
+		return ;
+	}
+	if (!is_sorted(*stack_b))
+		sortsmall(stack_a, stack_b, size, initial);
+	else
+	{
+		// ft_printf("size: %d\n", size);
+		// print_lists(*stack_a, *stack_b, NULL);
+		i = -1;
+		while (++i < size)
+		{
+			ft_push(stack_a, stack_b, STACK_A);
+			ft_rotate(stack_a, NULL, STACK_A);
+		}
+		// print_lists(*stack_a, *stack_b, NULL);
+		// i = -1;
+		// while (++i < size)
+		// 	ft_rotate(stack_a, NULL, STACK_A);
+	}
 }
 
-int			sorter_b(t_list **stack_a, t_list **stack_b, int size, int initial_size)
+void		sorter_b(t_list **stack_a, t_list **stack_b, int size, int initial_size)
 {
 	int median;
 	int i;
@@ -273,55 +396,17 @@ int			sorter_b(t_list **stack_a, t_list **stack_b, int size, int initial_size)
 	int min;
 	int	sorted;
 
-	(void)initial_size;
-	// if (size <= 1)
-	// 	return (0);
-	if (size <= 5)
+	if (size <= 30)
 	{
-		// print_lists(*stack_a, *stack_b, NULL);
-		launch_sort(size, stack_a, stack_b, STACK_B);
-		i = -1;
-		while (++i < size)
-			ft_push(stack_a, stack_b, STACK_A);
-		i = -1;
-		while (++i < size)
-			ft_rotate(stack_a, stack_b, STACK_A);
-		// print_lists(*stack_a, *stack_b, NULL);
-		return (0);
+		sortsmall(stack_a, stack_b, size, size);
+		return ;
 	}
-	// else if (size <= 10)
-	// {
-	// 	sortsmall(stack_a, stack_b, size, size);
-	// 	return (0);
-	// }
-	// if (size == 1)
-	// {
-	// 	ft_push(stack_a, stack_b, STACK_A);
-	// 	ft_rotate(stack_a, NULL, STACK_A);
-	// 	return (0);
-	// }
+		(void)initial_size;
 	median = find_median(*stack_b, ft_lstsize(*stack_b));
 	i = -1;
 	top_half_len = 0;
-	// min = ft_get_min_value(*stack_b);
-	// if (size > 5 && size <= 25)
-	// {
-	// 	sortsmall(stack_a, stack_b, size, size);
-	// 	return ;
-	// }
-	// if (size == 2)
-	// {
-	// 	ft_sort_2(stack_b, STACK_B);
-	// 	return ;
-	// }
 	index = -1;
 	sorted = 0;
-	// ft_printf("=======debut b============\n");
-	// ft_printf("size: %d\n", size);
-	// ft_printf("median: %d\n", median);
-	// ft_printf("min: %d\n", min);
-	// print_lists(*stack_a, *stack_b, NULL);
-	// ft_printf("=======debut b============\n");
 	int *save;
 	int size_b;
 	t_list *tmp;
@@ -339,165 +424,36 @@ int			sorter_b(t_list **stack_a, t_list **stack_b, int size, int initial_size)
 	min = save[i++];
 	int min_index;
 	min_index = ft_get_min_index(*stack_b);
-	// ft_printf("median: %d\n", median);
-	// ft_printf("======AVANT==========\n");
-	// 	print_lists(*stack_a, *stack_b, NULL);
-	// if (min_index <= size / 2)
-	// {
-		// int size_2;
-		// size_2 = ft_lstsize(*stack_b);
-		// if (size_2 <= 5)
-		// {
-		// 	launch_sort(size, stack_a, stack_b, STACK_B);
-		// 	i = -1;
-		// 	while (++i < size)
-		// 		ft_push(stack_a, stack_b, STACK_A);
-		// 	i = -1;
-		// 	while (++i < size)
-		// 		ft_rotate(stack_a, stack_b, STACK_A);
-		// 	return (0);
-		// }
-		// int test = 0;
-		while (++index < size)
+	while (++index < size)
+	{
+		value = *((int *)(*stack_b)->content);
+		if (value == min)
 		{
-			// int size_2;
-			// size_2 = ft_lstsize(*stack_b);
-			// if (size_2 <= 5)
-			// {
-			// 	launch_sort(size_2, stack_a, stack_b, STACK_B);
-			// 	i = -1;
-			// 	while (++i < size_2)
-			// 		ft_push(stack_a, stack_b, STACK_A);
-			// 	i = -1;
-			// 	while (++i < size_2)
-			// 		ft_rotate(stack_a, stack_b, STACK_A);
-			// 	return (size_2);
-			// }
-			value = *((int *)(*stack_b)->content);
-			if (value == min)
+			ft_push(stack_a, stack_b, STACK_A);
+			if (*((int *)(*stack_b)->content) != save[i] && *((int *)(*stack_b)->content) <= median)
 			{
-				ft_push(stack_a, stack_b, STACK_A);
+				ft_rotate(stack_a, NULL, BOTH);
+				ft_rotate(stack_b, NULL, NO_WRITE);
+			}
+			else
 				ft_rotate(stack_a, NULL, STACK_A);
 				min = save[i++];
 				sorted++;
-			}
-			else if (value > median)
-			{
-				ft_push(stack_a, stack_b, STACK_A);
-				top_half_len++;
-			}
-			else
-				ft_rotate(stack_b, NULL, STACK_B);
-			// if (check_nbs_left_b(*stack_b, size - index -1, median))
-			// {
-			// 	index++;
-			// 	// print_list(*stack_b, 2);
-			// 	// test = 1;
-			// 	// ft_printf("ind: %d\n",index - sorted - top_half_len);
-			// 	break ;
-			// }
 		}
-	// }
-	// else
-	// {
-	// 	// int size_2;
-	// 	// size_2 = ft_lstsize(*stack_b);
-	// 	// if (size_2 <= 5)
-	// 	// {
-	// 	// 	launch_sort(size, stack_a, stack_b, STACK_B);
-	// 	// 	i = -1;
-	// 	// 	while (++i < size)
-	// 	// 		ft_push(stack_a, stack_b, STACK_A);
-	// 	// 	i = -1;
-	// 	// 	while (++i < size)
-	// 	// 		ft_rotate(stack_a, stack_b, STACK_A);
-	// 	// 	return (0);
-	// 	// }
-	// 	ft_printf("size: %d\n", size);
-	// 	while (++index < size)
-	// 	{
-	// 		value = *((int *)(*stack_b)->content);
-	// 			ft_printf("value min: %d\n", min);
-	// 		if (value == min)
-	// 		{
-	// 			ft_printf("pa-rra sur %d\n", value);
-	// 			ft_push(stack_a, stack_b, STACK_A);
-	// 			ft_rotate(stack_a, NULL, STACK_A);
-	// 			min = save[i++];
-	// 			sorted++;
-	// 		}
-	// 		else if (value > median)
-	// 		{
-	// 			ft_printf("pa sur %d\n", value);
-	// 			ft_push(stack_a, stack_b, STACK_A);
-	// 			top_half_len++;
-	// 		}
-	// 		else
-	// 		{
-	// 			ft_reverse_rotate(stack_b, NULL, STACK_B);
-	// 			ft_printf("rrb sur %d\n", value);
-	// 		}
-	// 	}
-	// }
-	// ft_printf("median: %d\n", median);
-	// ft_printf("======APRES==========\n");
-	// print_lists(*stack_a, *stack_b, NULL);
-	// while (++index < size)
-	// {
-	// 	value = *((int *)(*stack_b)->content);
-	// 	if (value == min)
-	// 	{
-	// 		ft_push(stack_a, stack_b, STACK_A);
-	// 		ft_rotate(stack_a, NULL, STACK_A);
-	// 	 	min = save[i++];
-	// 		sorted++;
-	// 	}
-	// 	else if (value > median)
-	// 	{
-	// 		ft_push(stack_a, stack_b, STACK_A);
-	// 		top_half_len++;
-	// 	}
-	// 	else
-	// 		ft_rotate(stack_b, NULL, STACK_B);
-	// 	// if (check_nbs_left_b(*stack_b, size - index - 1, median))
-	// 	// {
-	// 	// 	index++;
-	// 	// 	break ;
-	// 	// }
-	// }
-	// ft_printf("index: %d\n", index - sorted - top_half_len);
-	// ft_printf("size - sorted - top_half_len: %d\n", size - sorted - top_half_len);
-	// ft_printf("=======fin b============\n");
-	// ft_printf("top_half_len: %d\n", top_half_len);
-	// ft_printf("next_size: %d\n", index - sorted - top_half_len);
-	// print_lists(*stack_a, *stack_b, NULL);
-	// ft_printf("=======fin b============\n");
-	// if (test)
-	// 	sorter_b(stack_a, stack_b, ft_lstsize(*stack_b), size);
-	// else
-	sorted += sorter_b(stack_a, stack_b, size - sorted - top_half_len, size);
-	// if (size - top_half_len <= 5)
-	// 	launch_sort(size - top_half_len, stack_a, stack_b, STACK_B);
-	// if (top_half_len <= 5)
-	// 	launch_sort(top_half_len, stack_a, stack_b, STACK_A);
-	// (void)initial_size;
-	// i = -1;
-	// while (++i < size - top_half_len)
-	// 	ft_push(stack_a, stack_b, STACK_A);
-	if (size == initial_size)
-		return (size - sorted);
-	return (sorted);
+		else if (value > median)
+		{
+			ft_push(stack_a, stack_b, STACK_A);
+			top_half_len++;
+		}
+		else
+			ft_rotate(stack_b, NULL, STACK_B);
+		if (check_nbs_left_b(*stack_b, ft_lstsize(*stack_b), median))
+		{
+			break ;
+		}
+	}
+	sorter_b(stack_a, stack_b, ft_lstsize(*stack_b), size);
 }
-
-// void		sorter(t_list **stack_a, t_list **stack_b, int size)
-// {
-// 	int median;
-// 	int i;
-//
-// 	median = find_median(*stack_a, size);
-// 	i = -1;
-// 	while (++i < size)
-// }
 
 int			get_first(t_list *list, int size)
 {
@@ -523,18 +479,7 @@ int			size_till_median(t_list *list, int median)
 	}
 	return (i);
 }
-// int			get_last(t_list *list)
-// {
-// 	int value;
-//
-// 	while (list)
-// 	{
-// 		if (!list->next)
-// 			value = *(int*)list->content;
-// 		list = list->next;
-// 	}
-// 	return (value);
-// }
+
 void		sorter(t_list **stack_a, t_list **stack_b, int size, int initial_size, int first)
 {
 	int median;
@@ -557,11 +502,11 @@ void		sorter(t_list **stack_a, t_list **stack_b, int size, int initial_size, int
 		return ;
 	}
 	index = -1;
-	// ft_printf("==========AVANT BOUCLE========\n");
-	// print_lists(*stack_a, *stack_b, NULL);
-	// ft_printf("==========AVANT BOUCLE========\n");
+	int tmp_med;
 	while (++index < size)
 	{
+		if (*stack_b)
+			tmp_med = find_median(*stack_b, ft_lstsize(*stack_b));
 		value = *((int *)(*stack_a)->content);
 		if (value <= median)
 		{
@@ -569,39 +514,38 @@ void		sorter(t_list **stack_a, t_list **stack_b, int size, int initial_size, int
 			top_half_len++;
 		}
 		else
-			ft_rotate(stack_a, NULL, STACK_A);
-		if (check_nbs_left(*stack_a, size - index - 1, median))
+		{
+			if (*stack_b && *((int *)(*stack_b)->content) <= tmp_med && ft_lstsize(*stack_b) > 5)
+			{
+				ft_rotate(stack_a, NULL, BOTH);
+				ft_rotate(stack_b, NULL, NO_WRITE);
+			}
+			else
+				ft_rotate(stack_a, NULL, STACK_A);
+		}
+		if (check_nbs_left(*stack_a, size - index, median))
 		{
 			index++;
 			break ;
 		}
 	}
-	// ft_printf("==========APRES BOUCLE========\n");
-	// print_lists(*stack_a, *stack_b, NULL);
-	// ft_printf("==========APRES BOUCLE========\n");
-	// if (top_half_len <= 5)
-	// 	launch_sort(top_half_len, stack_a, stack_b, STACK_B);
-	// else
-	// 	sorter_b(stack_b, stack_a, top_half_len, top_half_len);
 	if (!first)
 	{
 		i = -1;
-		// int med_b = find_median(*stack_b, top_half_len);
-		// int min = ft_get_min_index(*stack_b);
+		int min;
+		min = ft_get_min_index(*stack_b);
 		while (++i < index - top_half_len)
 		{
-			// if (min > top_half_len / 2)
-			// 	ft_reverse_rotate(stack_a, stack_b, BOTH);
-			// else
+			min = ft_get_min_index(*stack_b);
+			if (min > top_half_len / 2)
+			{
+				ft_reverse_rotate(stack_a, NULL, BOTH);
+				ft_reverse_rotate(stack_b, NULL, NO_WRITE);
+			}
+			else
 				ft_reverse_rotate(stack_a, NULL, STACK_A);
 		}
-			// ft_printf("==========APRES RRA========\n");
-			// print_lists(*stack_a, *stack_b, NULL);
-			// ft_printf("==========APRES RRA========\n");
 	}
-	// ft_printf("test\n");
-	// if (top_half_len > 5)
-	// int size = size_till_medial(*stack_a);
 	(void)ret;
 	int save = *((int *)(*stack_a)->content);
 	if (!is_rev_sorted(*stack_b))
@@ -615,73 +559,18 @@ void		sorter(t_list **stack_a, t_list **stack_b, int size, int initial_size, int
 		while (++i < top_half_len)
 			ft_rotate(stack_a, stack_b, STACK_A);
 	}
-	// if (*stack_b)
-	// 	while (*((int *)(*stack_b)->content) < get_last(*stack_b))
-	// 		ft_rotate(stack_b, NULL, STACK_B);
-	// if (top_half_len <= 5)
-	// {
-	// 	i = -1;
-	// 	while (++i < top_half_len)
-	// 		ft_push(stack_a, stack_b, STACK_A);
-	// }
-	// ft_printf("===============\n");
-	// ft_printf("top_half_len: %d\n", top_half_len);
-	// ft_printf("ret: %d\n", ret);
-	// print_lists(*stack_a, *stack_b, NULL);
-	// ft_printf("===============\n");
-	// ft_printf("size_till: %d\n", size_till_median(*stack_a, save));
-	// ft_printf("save: %d\n", save);
 	while (!is_size_sorted(*stack_a, size_till_median(*stack_a, save)))
 		sorter(stack_a, stack_b, size_till_median(*stack_a, save), initial_size, 0);
 	if (size == initial_size)
 	{
 		i = -1;
-		// ft_printf("SAVE HAHA:%d\n", save);
-		// print_lists(*stack_a, *stack_b, NULL);
-		// ft_printf("size - ret: %d\n", size - top_half_len);
 		int haha;
 		haha = size_till_median(*stack_a, save);
 		while (++i < haha)
 			ft_rotate(stack_a, NULL, STACK_A);
-		// ft_printf("SAVE HAHA:%d\n", save);
-		// print_lists(*stack_a, *stack_b, NULL);
-		// ft_printf("size - ret: %d\n", size - top_half_len);
 		if (!is_size_sorted(*stack_a, size - top_half_len))
 		sorter(stack_a, stack_b, size - top_half_len, size - top_half_len, 0);
 	}
-	if (first)
-		ft_rotate(stack_a, NULL, STACK_A);
-	// if (!is_size_sorted(*stack_a, size_till_median(*stack_a, save)))
-	// 	sorter(stack_a, stack_b, size_till_median(*stack_a, save), initial_size);
-	// else
-	// {
-	// 	ft_printf("FILS DEPUTE\n");
-	// 	i = -1;
-	// 	while (++i < ret)
-	// 		ft_rotate(stack_a, NULL, STACK_A);
-	// }
 		(void)initial_size;
-	// i = -1;
-	// while (++i < top_half_len)
-	// 	ft_rotate(stack_a, NULL, STACK_A);
-	// if (!is_size_sorted(*stack_a, size - top_half_len))
-	// 	sorter(stack_a, stack_b, size - top_half_len, initial_size);
-	// i = -1;
-	// ft_printf("chunk: %d, ret: %d\n", top_half_len, ret);
-	// print_list(*stack_a, 1);
-	// if (!ret)
-	// {
-		// while (++i < top_half_len)
-		// 	ft_reverse_rotate(stack_a, NULL, STACK_A);
-	// }
-	// if (!is_botom_sorted(*stack_a, top_half_len))
-	// {
-	// 	// ft_printf("fdp: %d\n", top_half_len);
-	// 	// ft_printf("=======================\n");
-	// 	// print_list(*stack_a, 1);
-	// 	// ft_printf("=======================\n");
-	// 	while (++i < top_half_len)
-	// 		ft_reverse_rotate(stack_a, NULL, STACK_A);
-	// }
 
 }

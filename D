@@ -1,0 +1,1739 @@
+pb
+pb
+ra
+pb
+pb
+pb
+ra
+pb
+ra
+ra
+pb
+ra
+pb
+ra
+pb
+ra
+pb
+pb
+pb
+pb
+pb
+ra
+pb
+ra
+ra
+ra
+ra
+pb
+pb
+ra
+ra
+ra
+pb
+pb
+ra
+ra
+pb
+ra
+ra
+pb
+ra
+pb
+ra
+ra
+ra
+ra
+pb
+pb
+pb
+ra
+pb
+pb
+pb
+ra
+ra
+pb
+ra
+pb
+pb
+ra
+pb
+pb
+ra
+pb
+pb
+ra
+ra
+pb
+ra
+pb
+pb
+ra
+ra
+pb
+ra
+ra
+ra
+pb
+pb
+ra
+pb
+ra
+pb
+ra
+pb
+ra
+ra
+ra
+ra
+ra
+pb
+pb
+ra
+ra
+ra
+pb
+pb
+pb
+pb
+pb
+rb
+rb
+pa
+pa
+rb
+pa
+rb
+pa
+pa
+pa
+pa
+rb
+rb
+rb
+rb
+pa
+pa
+pa
+pa
+pa
+rb
+rb
+pa
+pa
+rb
+rb
+pa
+rb
+rb
+pa
+pa
+ra
+pa
+rb
+rb
+pa
+rb
+pa
+pa
+pa
+rb
+pa
+rb
+rb
+rb
+rb
+pa
+rb
+pa
+rb
+pa
+rb
+rb
+pa
+ra
+rrb
+pa
+ra
+rb
+rb
+pa
+ra
+pa
+ra
+rrb
+rrb
+rrb
+rrb
+pa
+ra
+rrb
+rrb
+rrb
+rrb
+pa
+ra
+rrb
+pa
+ra
+rb
+rb
+pa
+ra
+rb
+pa
+ra
+rb
+rb
+rb
+pa
+ra
+rb
+rb
+rb
+rb
+pa
+ra
+rb
+rb
+rb
+rb
+rb
+rb
+rb
+pa
+ra
+rb
+rb
+rb
+rb
+rb
+rb
+pa
+ra
+rb
+pa
+ra
+rb
+rb
+rb
+rb
+rb
+pa
+ra
+rrb
+pa
+ra
+rrb
+rrb
+rrb
+rrb
+pa
+ra
+rb
+rb
+rb
+rb
+pa
+ra
+rrb
+rrb
+pa
+ra
+rb
+pa
+ra
+rb
+pa
+ra
+rrb
+pa
+ra
+rrb
+pa
+ra
+sb
+pa
+pa
+ra
+ra
+ra
+pb
+pb
+pb
+ra
+ra
+pb
+pb
+pb
+pb
+pb
+ra
+ra
+pb
+ra
+pb
+ra
+pb
+pb
+pb
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rrb
+rrb
+rrb
+pa
+ra
+rb
+pa
+ra
+rrb
+rrb
+pa
+ra
+pa
+ra
+rrb
+rrb
+pa
+ra
+rrb
+rrb
+pa
+ra
+rrb
+rrb
+rrb
+pa
+ra
+rrb
+pa
+ra
+rrb
+pa
+ra
+rb
+rb
+pa
+ra
+pa
+ra
+sb
+pa
+pa
+ra
+ra
+pb
+ra
+pb
+ra
+pb
+pb
+ra
+pb
+ra
+pb
+ra
+pb
+rra
+rra
+rra
+rra
+rra
+pa
+ra
+pa
+ra
+rb
+rb
+pa
+ra
+rb
+pa
+ra
+rrb
+pa
+ra
+pa
+pa
+ra
+ra
+ra
+pb
+pb
+pb
+rra
+pa
+pa
+pa
+ra
+ra
+ra
+size 2
+[1m[34m========================STACK_A=========================
+number[0]: 53163
+number[1]: 54231
+number[2]: 66644
+number[3]: 82002
+number[4]: 77325
+number[5]: 74930
+number[6]: 93347
+number[7]: 99756
+number[8]: 57435
+number[9]: 91211
+number[10]: 80530
+number[11]: 65317
+number[12]: 57840
+number[13]: 80270
+number[14]: 82666
+number[15]: 58908
+number[16]: 77066
+number[17]: 69185
+number[18]: 72794
+number[19]: 74121
+number[20]: 84543
+number[21]: 79866
+number[22]: 58099
+number[23]: 59167
+number[24]: 55963
+number[25]: 65576
+number[26]: 95483
+number[27]: 57031
+number[28]: 62371
+number[29]: 94415
+number[30]: 78798
+number[31]: 88007
+number[32]: 78393
+number[33]: 71725
+number[34]: 64508
+number[35]: 65980
+number[36]: 82407
+number[37]: 60640
+number[38]: 98429
+number[39]: 58503
+number[40]: 89075
+number[41]: 61303
+number[42]: 84802
+number[43]: 96292
+number[44]: 64912
+number[45]: 85611
+number[46]: 96956
+number[47]: 89479
+number[48]: 73053
+number[49]: 87747
+number[50]: 90547
+number[51]: 160
+number[52]: 824
+number[53]: 4433
+number[54]: 4838
+number[55]: 6569
+number[56]: 6974
+number[57]: 7637
+number[58]: 8042
+number[59]: 8301
+number[60]: 8706
+number[61]: 9369
+number[62]: 10178
+number[63]: 11910
+number[64]: 12574
+number[65]: 12978
+number[66]: 13383
+number[67]: 13642
+number[68]: 17914
+number[69]: 18982
+number[70]: 20050
+number[71]: 20455
+number[72]: 22591
+number[73]: 23255
+number[74]: 23659
+number[75]: 26864
+number[76]: 29000
+number[77]: 29664
+number[78]: 32868
+number[79]: 33273
+number[80]: 34341
+number[81]: 35409
+number[82]: 37141
+number[83]: 38613
+number[84]: 39277
+number[85]: 39681
+number[86]: 40750
+number[87]: 41413
+number[88]: 42886
+number[89]: 43954
+number[90]: 44213
+number[91]: 44618
+number[92]: 46349
+number[93]: 46754
+number[94]: 47417
+number[95]: 48486
+number[96]: 49554
+number[97]: 49958
+number[98]: 51690
+number[99]: 52499
+========================================================
+[0mra
+ra
+[1m[34m========================STACK_A=========================
+number[0]: 66644
+number[1]: 82002
+number[2]: 77325
+number[3]: 74930
+number[4]: 93347
+number[5]: 99756
+number[6]: 57435
+number[7]: 91211
+number[8]: 80530
+number[9]: 65317
+number[10]: 57840
+number[11]: 80270
+number[12]: 82666
+number[13]: 58908
+number[14]: 77066
+number[15]: 69185
+number[16]: 72794
+number[17]: 74121
+number[18]: 84543
+number[19]: 79866
+number[20]: 58099
+number[21]: 59167
+number[22]: 55963
+number[23]: 65576
+number[24]: 95483
+number[25]: 57031
+number[26]: 62371
+number[27]: 94415
+number[28]: 78798
+number[29]: 88007
+number[30]: 78393
+number[31]: 71725
+number[32]: 64508
+number[33]: 65980
+number[34]: 82407
+number[35]: 60640
+number[36]: 98429
+number[37]: 58503
+number[38]: 89075
+number[39]: 61303
+number[40]: 84802
+number[41]: 96292
+number[42]: 64912
+number[43]: 85611
+number[44]: 96956
+number[45]: 89479
+number[46]: 73053
+number[47]: 87747
+number[48]: 90547
+number[49]: 160
+number[50]: 824
+number[51]: 4433
+number[52]: 4838
+number[53]: 6569
+number[54]: 6974
+number[55]: 7637
+number[56]: 8042
+number[57]: 8301
+number[58]: 8706
+number[59]: 9369
+number[60]: 10178
+number[61]: 11910
+number[62]: 12574
+number[63]: 12978
+number[64]: 13383
+number[65]: 13642
+number[66]: 17914
+number[67]: 18982
+number[68]: 20050
+number[69]: 20455
+number[70]: 22591
+number[71]: 23255
+number[72]: 23659
+number[73]: 26864
+number[74]: 29000
+number[75]: 29664
+number[76]: 32868
+number[77]: 33273
+number[78]: 34341
+number[79]: 35409
+number[80]: 37141
+number[81]: 38613
+number[82]: 39277
+number[83]: 39681
+number[84]: 40750
+number[85]: 41413
+number[86]: 42886
+number[87]: 43954
+number[88]: 44213
+number[89]: 44618
+number[90]: 46349
+number[91]: 46754
+number[92]: 47417
+number[93]: 48486
+number[94]: 49554
+number[95]: 49958
+number[96]: 51690
+number[97]: 52499
+number[98]: 53163
+number[99]: 54231
+========================================================
+[0mpb
+ra
+pb
+pb
+ra
+ra
+pb
+ra
+ra
+pb
+pb
+ra
+ra
+pb
+pb
+pb
+pb
+pb
+ra
+ra
+pb
+pb
+pb
+pb
+ra
+pb
+pb
+ra
+ra
+ra
+ra
+pb
+pb
+pb
+ra
+pb
+ra
+pb
+ra
+pb
+ra
+ra
+pb
+ra
+ra
+ra
+pb
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rb
+rb
+rb
+rb
+rb
+rb
+rb
+rb
+rb
+rb
+rb
+pa
+ra
+rrb
+rrb
+pa
+ra
+rb
+rb
+rb
+rb
+rb
+rb
+rb
+rb
+rb
+rb
+pa
+ra
+rrb
+rrb
+pa
+ra
+rrb
+rrb
+rrb
+rrb
+rrb
+rrb
+pa
+ra
+rrb
+rrb
+rrb
+rrb
+rrb
+rrb
+rrb
+rrb
+pa
+ra
+rrb
+rrb
+rrb
+rrb
+rrb
+rrb
+rrb
+rrb
+pa
+ra
+rrb
+rrb
+rrb
+rrb
+rrb
+pa
+ra
+rrb
+rrb
+rrb
+rrb
+rrb
+rrb
+pa
+ra
+rrb
+pa
+ra
+rb
+rb
+rb
+pa
+ra
+rrb
+rrb
+pa
+ra
+rrb
+rrb
+pa
+ra
+rrb
+rrb
+rrb
+rrb
+rrb
+pa
+ra
+rrb
+rrb
+rrb
+rrb
+rrb
+pa
+ra
+rrb
+rrb
+pa
+ra
+rrb
+rrb
+pa
+ra
+rb
+rb
+rb
+rb
+pa
+ra
+rrb
+rrb
+rrb
+pa
+ra
+rb
+pa
+ra
+rrb
+rrb
+pa
+ra
+pa
+ra
+rb
+pa
+ra
+pa
+pa
+ra
+ra
+size 0
+[1m[34m========================STACK_A=========================
+number[0]: 82002
+number[1]: 93347
+number[2]: 99756
+number[3]: 91211
+number[4]: 80530
+number[5]: 80270
+number[6]: 82666
+number[7]: 84543
+number[8]: 79866
+number[9]: 95483
+number[10]: 94415
+number[11]: 78798
+number[12]: 88007
+number[13]: 78393
+number[14]: 82407
+number[15]: 98429
+number[16]: 89075
+number[17]: 84802
+number[18]: 96292
+number[19]: 85611
+number[20]: 96956
+number[21]: 89479
+number[22]: 87747
+number[23]: 90547
+number[24]: 160
+number[25]: 824
+number[26]: 4433
+number[27]: 4838
+number[28]: 6569
+number[29]: 6974
+number[30]: 7637
+number[31]: 8042
+number[32]: 8301
+number[33]: 8706
+number[34]: 9369
+number[35]: 10178
+number[36]: 11910
+number[37]: 12574
+number[38]: 12978
+number[39]: 13383
+number[40]: 13642
+number[41]: 17914
+number[42]: 18982
+number[43]: 20050
+number[44]: 20455
+number[45]: 22591
+number[46]: 23255
+number[47]: 23659
+number[48]: 26864
+number[49]: 29000
+number[50]: 29664
+number[51]: 32868
+number[52]: 33273
+number[53]: 34341
+number[54]: 35409
+number[55]: 37141
+number[56]: 38613
+number[57]: 39277
+number[58]: 39681
+number[59]: 40750
+number[60]: 41413
+number[61]: 42886
+number[62]: 43954
+number[63]: 44213
+number[64]: 44618
+number[65]: 46349
+number[66]: 46754
+number[67]: 47417
+number[68]: 48486
+number[69]: 49554
+number[70]: 49958
+number[71]: 51690
+number[72]: 52499
+number[73]: 53163
+number[74]: 54231
+number[75]: 55963
+number[76]: 57031
+number[77]: 57435
+number[78]: 57840
+number[79]: 58099
+number[80]: 58503
+number[81]: 58908
+number[82]: 59167
+number[83]: 60640
+number[84]: 61303
+number[85]: 62371
+number[86]: 64508
+number[87]: 64912
+number[88]: 65317
+number[89]: 65576
+number[90]: 65980
+number[91]: 66644
+number[92]: 69185
+number[93]: 71725
+number[94]: 72794
+number[95]: 73053
+number[96]: 74121
+number[97]: 74930
+number[98]: 77066
+number[99]: 77325
+========================================================
+[0m[1m[34m========================STACK_A=========================
+number[0]: 82002
+number[1]: 93347
+number[2]: 99756
+number[3]: 91211
+number[4]: 80530
+number[5]: 80270
+number[6]: 82666
+number[7]: 84543
+number[8]: 79866
+number[9]: 95483
+number[10]: 94415
+number[11]: 78798
+number[12]: 88007
+number[13]: 78393
+number[14]: 82407
+number[15]: 98429
+number[16]: 89075
+number[17]: 84802
+number[18]: 96292
+number[19]: 85611
+number[20]: 96956
+number[21]: 89479
+number[22]: 87747
+number[23]: 90547
+number[24]: 160
+number[25]: 824
+number[26]: 4433
+number[27]: 4838
+number[28]: 6569
+number[29]: 6974
+number[30]: 7637
+number[31]: 8042
+number[32]: 8301
+number[33]: 8706
+number[34]: 9369
+number[35]: 10178
+number[36]: 11910
+number[37]: 12574
+number[38]: 12978
+number[39]: 13383
+number[40]: 13642
+number[41]: 17914
+number[42]: 18982
+number[43]: 20050
+number[44]: 20455
+number[45]: 22591
+number[46]: 23255
+number[47]: 23659
+number[48]: 26864
+number[49]: 29000
+number[50]: 29664
+number[51]: 32868
+number[52]: 33273
+number[53]: 34341
+number[54]: 35409
+number[55]: 37141
+number[56]: 38613
+number[57]: 39277
+number[58]: 39681
+number[59]: 40750
+number[60]: 41413
+number[61]: 42886
+number[62]: 43954
+number[63]: 44213
+number[64]: 44618
+number[65]: 46349
+number[66]: 46754
+number[67]: 47417
+number[68]: 48486
+number[69]: 49554
+number[70]: 49958
+number[71]: 51690
+number[72]: 52499
+number[73]: 53163
+number[74]: 54231
+number[75]: 55963
+number[76]: 57031
+number[77]: 57435
+number[78]: 57840
+number[79]: 58099
+number[80]: 58503
+number[81]: 58908
+number[82]: 59167
+number[83]: 60640
+number[84]: 61303
+number[85]: 62371
+number[86]: 64508
+number[87]: 64912
+number[88]: 65317
+number[89]: 65576
+number[90]: 65980
+number[91]: 66644
+number[92]: 69185
+number[93]: 71725
+number[94]: 72794
+number[95]: 73053
+number[96]: 74121
+number[97]: 74930
+number[98]: 77066
+number[99]: 77325
+========================================================
+[0mpb
+ra
+ra
+ra
+pb
+pb
+pb
+pb
+pb
+ra
+ra
+pb
+pb
+pb
+pb
+ra
+ra
+pb
+ra
+pb
+ra
+ra
+pb
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rb
+rb
+rb
+rb
+pa
+ra
+rb
+pa
+ra
+pa
+ra
+rb
+rb
+pa
+ra
+pa
+ra
+pa
+ra
+rb
+rb
+rb
+pa
+ra
+rb
+rb
+pa
+ra
+rrb
+pa
+ra
+rb
+rb
+pa
+ra
+rrb
+pa
+ra
+pa
+pa
+ra
+ra
+size 0
+[1m[34m========================STACK_A=========================
+number[0]: 93347
+number[1]: 99756
+number[2]: 91211
+number[3]: 95483
+number[4]: 94415
+number[5]: 98429
+number[6]: 89075
+number[7]: 96292
+number[8]: 96956
+number[9]: 89479
+number[10]: 90547
+number[11]: 160
+number[12]: 824
+number[13]: 4433
+number[14]: 4838
+number[15]: 6569
+number[16]: 6974
+number[17]: 7637
+number[18]: 8042
+number[19]: 8301
+number[20]: 8706
+number[21]: 9369
+number[22]: 10178
+number[23]: 11910
+number[24]: 12574
+number[25]: 12978
+number[26]: 13383
+number[27]: 13642
+number[28]: 17914
+number[29]: 18982
+number[30]: 20050
+number[31]: 20455
+number[32]: 22591
+number[33]: 23255
+number[34]: 23659
+number[35]: 26864
+number[36]: 29000
+number[37]: 29664
+number[38]: 32868
+number[39]: 33273
+number[40]: 34341
+number[41]: 35409
+number[42]: 37141
+number[43]: 38613
+number[44]: 39277
+number[45]: 39681
+number[46]: 40750
+number[47]: 41413
+number[48]: 42886
+number[49]: 43954
+number[50]: 44213
+number[51]: 44618
+number[52]: 46349
+number[53]: 46754
+number[54]: 47417
+number[55]: 48486
+number[56]: 49554
+number[57]: 49958
+number[58]: 51690
+number[59]: 52499
+number[60]: 53163
+number[61]: 54231
+number[62]: 55963
+number[63]: 57031
+number[64]: 57435
+number[65]: 57840
+number[66]: 58099
+number[67]: 58503
+number[68]: 58908
+number[69]: 59167
+number[70]: 60640
+number[71]: 61303
+number[72]: 62371
+number[73]: 64508
+number[74]: 64912
+number[75]: 65317
+number[76]: 65576
+number[77]: 65980
+number[78]: 66644
+number[79]: 69185
+number[80]: 71725
+number[81]: 72794
+number[82]: 73053
+number[83]: 74121
+number[84]: 74930
+number[85]: 77066
+number[86]: 77325
+number[87]: 78393
+number[88]: 78798
+number[89]: 79866
+number[90]: 80270
+number[91]: 80530
+number[92]: 82002
+number[93]: 82407
+number[94]: 82666
+number[95]: 84543
+number[96]: 84802
+number[97]: 85611
+number[98]: 87747
+number[99]: 88007
+========================================================
+[0m[1m[34m========================STACK_A=========================
+number[0]: 93347
+number[1]: 99756
+number[2]: 91211
+number[3]: 95483
+number[4]: 94415
+number[5]: 98429
+number[6]: 89075
+number[7]: 96292
+number[8]: 96956
+number[9]: 89479
+number[10]: 90547
+number[11]: 160
+number[12]: 824
+number[13]: 4433
+number[14]: 4838
+number[15]: 6569
+number[16]: 6974
+number[17]: 7637
+number[18]: 8042
+number[19]: 8301
+number[20]: 8706
+number[21]: 9369
+number[22]: 10178
+number[23]: 11910
+number[24]: 12574
+number[25]: 12978
+number[26]: 13383
+number[27]: 13642
+number[28]: 17914
+number[29]: 18982
+number[30]: 20050
+number[31]: 20455
+number[32]: 22591
+number[33]: 23255
+number[34]: 23659
+number[35]: 26864
+number[36]: 29000
+number[37]: 29664
+number[38]: 32868
+number[39]: 33273
+number[40]: 34341
+number[41]: 35409
+number[42]: 37141
+number[43]: 38613
+number[44]: 39277
+number[45]: 39681
+number[46]: 40750
+number[47]: 41413
+number[48]: 42886
+number[49]: 43954
+number[50]: 44213
+number[51]: 44618
+number[52]: 46349
+number[53]: 46754
+number[54]: 47417
+number[55]: 48486
+number[56]: 49554
+number[57]: 49958
+number[58]: 51690
+number[59]: 52499
+number[60]: 53163
+number[61]: 54231
+number[62]: 55963
+number[63]: 57031
+number[64]: 57435
+number[65]: 57840
+number[66]: 58099
+number[67]: 58503
+number[68]: 58908
+number[69]: 59167
+number[70]: 60640
+number[71]: 61303
+number[72]: 62371
+number[73]: 64508
+number[74]: 64912
+number[75]: 65317
+number[76]: 65576
+number[77]: 65980
+number[78]: 66644
+number[79]: 69185
+number[80]: 71725
+number[81]: 72794
+number[82]: 73053
+number[83]: 74121
+number[84]: 74930
+number[85]: 77066
+number[86]: 77325
+number[87]: 78393
+number[88]: 78798
+number[89]: 79866
+number[90]: 80270
+number[91]: 80530
+number[92]: 82002
+number[93]: 82407
+number[94]: 82666
+number[95]: 84543
+number[96]: 84802
+number[97]: 85611
+number[98]: 87747
+number[99]: 88007
+========================================================
+[0mpb
+ra
+pb
+ra
+pb
+ra
+pb
+ra
+ra
+pb
+pb
+rra
+rra
+rra
+rra
+rra
+rb
+rb
+pa
+ra
+rrb
+pa
+ra
+rrb
+pa
+ra
+rb
+pa
+ra
+sb
+pa
+pa
+ra
+ra
+size 0
+[1m[34m========================STACK_A=========================
+number[0]: 99756
+number[1]: 95483
+number[2]: 98429
+number[3]: 96292
+number[4]: 96956
+number[5]: 160
+number[6]: 824
+number[7]: 4433
+number[8]: 4838
+number[9]: 6569
+number[10]: 6974
+number[11]: 7637
+number[12]: 8042
+number[13]: 8301
+number[14]: 8706
+number[15]: 9369
+number[16]: 10178
+number[17]: 11910
+number[18]: 12574
+number[19]: 12978
+number[20]: 13383
+number[21]: 13642
+number[22]: 17914
+number[23]: 18982
+number[24]: 20050
+number[25]: 20455
+number[26]: 22591
+number[27]: 23255
+number[28]: 23659
+number[29]: 26864
+number[30]: 29000
+number[31]: 29664
+number[32]: 32868
+number[33]: 33273
+number[34]: 34341
+number[35]: 35409
+number[36]: 37141
+number[37]: 38613
+number[38]: 39277
+number[39]: 39681
+number[40]: 40750
+number[41]: 41413
+number[42]: 42886
+number[43]: 43954
+number[44]: 44213
+number[45]: 44618
+number[46]: 46349
+number[47]: 46754
+number[48]: 47417
+number[49]: 48486
+number[50]: 49554
+number[51]: 49958
+number[52]: 51690
+number[53]: 52499
+number[54]: 53163
+number[55]: 54231
+number[56]: 55963
+number[57]: 57031
+number[58]: 57435
+number[59]: 57840
+number[60]: 58099
+number[61]: 58503
+number[62]: 58908
+number[63]: 59167
+number[64]: 60640
+number[65]: 61303
+number[66]: 62371
+number[67]: 64508
+number[68]: 64912
+number[69]: 65317
+number[70]: 65576
+number[71]: 65980
+number[72]: 66644
+number[73]: 69185
+number[74]: 71725
+number[75]: 72794
+number[76]: 73053
+number[77]: 74121
+number[78]: 74930
+number[79]: 77066
+number[80]: 77325
+number[81]: 78393
+number[82]: 78798
+number[83]: 79866
+number[84]: 80270
+number[85]: 80530
+number[86]: 82002
+number[87]: 82407
+number[88]: 82666
+number[89]: 84543
+number[90]: 84802
+number[91]: 85611
+number[92]: 87747
+number[93]: 88007
+number[94]: 89075
+number[95]: 89479
+number[96]: 90547
+number[97]: 91211
+number[98]: 93347
+number[99]: 94415
+========================================================
+[0m[1m[34m========================STACK_A=========================
+number[0]: 99756
+number[1]: 95483
+number[2]: 98429
+number[3]: 96292
+number[4]: 96956
+number[5]: 160
+number[6]: 824
+number[7]: 4433
+number[8]: 4838
+number[9]: 6569
+number[10]: 6974
+number[11]: 7637
+number[12]: 8042
+number[13]: 8301
+number[14]: 8706
+number[15]: 9369
+number[16]: 10178
+number[17]: 11910
+number[18]: 12574
+number[19]: 12978
+number[20]: 13383
+number[21]: 13642
+number[22]: 17914
+number[23]: 18982
+number[24]: 20050
+number[25]: 20455
+number[26]: 22591
+number[27]: 23255
+number[28]: 23659
+number[29]: 26864
+number[30]: 29000
+number[31]: 29664
+number[32]: 32868
+number[33]: 33273
+number[34]: 34341
+number[35]: 35409
+number[36]: 37141
+number[37]: 38613
+number[38]: 39277
+number[39]: 39681
+number[40]: 40750
+number[41]: 41413
+number[42]: 42886
+number[43]: 43954
+number[44]: 44213
+number[45]: 44618
+number[46]: 46349
+number[47]: 46754
+number[48]: 47417
+number[49]: 48486
+number[50]: 49554
+number[51]: 49958
+number[52]: 51690
+number[53]: 52499
+number[54]: 53163
+number[55]: 54231
+number[56]: 55963
+number[57]: 57031
+number[58]: 57435
+number[59]: 57840
+number[60]: 58099
+number[61]: 58503
+number[62]: 58908
+number[63]: 59167
+number[64]: 60640
+number[65]: 61303
+number[66]: 62371
+number[67]: 64508
+number[68]: 64912
+number[69]: 65317
+number[70]: 65576
+number[71]: 65980
+number[72]: 66644
+number[73]: 69185
+number[74]: 71725
+number[75]: 72794
+number[76]: 73053
+number[77]: 74121
+number[78]: 74930
+number[79]: 77066
+number[80]: 77325
+number[81]: 78393
+number[82]: 78798
+number[83]: 79866
+number[84]: 80270
+number[85]: 80530
+number[86]: 82002
+number[87]: 82407
+number[88]: 82666
+number[89]: 84543
+number[90]: 84802
+number[91]: 85611
+number[92]: 87747
+number[93]: 88007
+number[94]: 89075
+number[95]: 89479
+number[96]: 90547
+number[97]: 91211
+number[98]: 93347
+number[99]: 94415
+========================================================
+[0mra
+pb
+ra
+pb
+pb
+rra
+rra
+pa
+pa
+pa
+ra
+ra
+ra
+size 0
+[1m[34m========================STACK_A=========================
+number[0]: 99756
+number[1]: 98429
+number[2]: 160
+number[3]: 824
+number[4]: 4433
+number[5]: 4838
+number[6]: 6569
+number[7]: 6974
+number[8]: 7637
+number[9]: 8042
+number[10]: 8301
+number[11]: 8706
+number[12]: 9369
+number[13]: 10178
+number[14]: 11910
+number[15]: 12574
+number[16]: 12978
+number[17]: 13383
+number[18]: 13642
+number[19]: 17914
+number[20]: 18982
+number[21]: 20050
+number[22]: 20455
+number[23]: 22591
+number[24]: 23255
+number[25]: 23659
+number[26]: 26864
+number[27]: 29000
+number[28]: 29664
+number[29]: 32868
+number[30]: 33273
+number[31]: 34341
+number[32]: 35409
+number[33]: 37141
+number[34]: 38613
+number[35]: 39277
+number[36]: 39681
+number[37]: 40750
+number[38]: 41413
+number[39]: 42886
+number[40]: 43954
+number[41]: 44213
+number[42]: 44618
+number[43]: 46349
+number[44]: 46754
+number[45]: 47417
+number[46]: 48486
+number[47]: 49554
+number[48]: 49958
+number[49]: 51690
+number[50]: 52499
+number[51]: 53163
+number[52]: 54231
+number[53]: 55963
+number[54]: 57031
+number[55]: 57435
+number[56]: 57840
+number[57]: 58099
+number[58]: 58503
+number[59]: 58908
+number[60]: 59167
+number[61]: 60640
+number[62]: 61303
+number[63]: 62371
+number[64]: 64508
+number[65]: 64912
+number[66]: 65317
+number[67]: 65576
+number[68]: 65980
+number[69]: 66644
+number[70]: 69185
+number[71]: 71725
+number[72]: 72794
+number[73]: 73053
+number[74]: 74121
+number[75]: 74930
+number[76]: 77066
+number[77]: 77325
+number[78]: 78393
+number[79]: 78798
+number[80]: 79866
+number[81]: 80270
+number[82]: 80530
+number[83]: 82002
+number[84]: 82407
+number[85]: 82666
+number[86]: 84543
+number[87]: 84802
+number[88]: 85611
+number[89]: 87747
+number[90]: 88007
+number[91]: 89075
+number[92]: 89479
+number[93]: 90547
+number[94]: 91211
+number[95]: 93347
+number[96]: 94415
+number[97]: 95483
+number[98]: 96292
+number[99]: 96956
+========================================================
+[0m[1m[34m========================STACK_A=========================
+number[0]: 99756
+number[1]: 98429
+number[2]: 160
+number[3]: 824
+number[4]: 4433
+number[5]: 4838
+number[6]: 6569
+number[7]: 6974
+number[8]: 7637
+number[9]: 8042
+number[10]: 8301
+number[11]: 8706
+number[12]: 9369
+number[13]: 10178
+number[14]: 11910
+number[15]: 12574
+number[16]: 12978
+number[17]: 13383
+number[18]: 13642
+number[19]: 17914
+number[20]: 18982
+number[21]: 20050
+number[22]: 20455
+number[23]: 22591
+number[24]: 23255
+number[25]: 23659
+number[26]: 26864
+number[27]: 29000
+number[28]: 29664
+number[29]: 32868
+number[30]: 33273
+number[31]: 34341
+number[32]: 35409
+number[33]: 37141
+number[34]: 38613
+number[35]: 39277
+number[36]: 39681
+number[37]: 40750
+number[38]: 41413
+number[39]: 42886
+number[40]: 43954
+number[41]: 44213
+number[42]: 44618
+number[43]: 46349
+number[44]: 46754
+number[45]: 47417
+number[46]: 48486
+number[47]: 49554
+number[48]: 49958
+number[49]: 51690
+number[50]: 52499
+number[51]: 53163
+number[52]: 54231
+number[53]: 55963
+number[54]: 57031
+number[55]: 57435
+number[56]: 57840
+number[57]: 58099
+number[58]: 58503
+number[59]: 58908
+number[60]: 59167
+number[61]: 60640
+number[62]: 61303
+number[63]: 62371
+number[64]: 64508
+number[65]: 64912
+number[66]: 65317
+number[67]: 65576
+number[68]: 65980
+number[69]: 66644
+number[70]: 69185
+number[71]: 71725
+number[72]: 72794
+number[73]: 73053
+number[74]: 74121
+number[75]: 74930
+number[76]: 77066
+number[77]: 77325
+number[78]: 78393
+number[79]: 78798
+number[80]: 79866
+number[81]: 80270
+number[82]: 80530
+number[83]: 82002
+number[84]: 82407
+number[85]: 82666
+number[86]: 84543
+number[87]: 84802
+number[88]: 85611
+number[89]: 87747
+number[90]: 88007
+number[91]: 89075
+number[92]: 89479
+number[93]: 90547
+number[94]: 91211
+number[95]: 93347
+number[96]: 94415
+number[97]: 95483
+number[98]: 96292
+number[99]: 96956
+========================================================
+[0msa
+ra
+ra
