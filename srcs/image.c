@@ -6,12 +6,11 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 08:54:33 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/11 10:26:35 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/14 20:55:32 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visu.h"
-#include "push_swap.h"
 
 int				ft_put_pixel_img(t_image *img, int x, int y, int color)
 {

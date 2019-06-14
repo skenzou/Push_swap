@@ -6,7 +6,7 @@
 #    By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/03 09:24:41 by midrissi          #+#    #+#              #
-#    Updated: 2019/06/13 16:22:05 by midrissi         ###   ########.fr        #
+#    Updated: 2019/06/14 22:00:12 by midrissi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ MLX_INC			= -I $(MLX_PATH)
 SRC_NAME		= parse_args.c read_instructions.c utils.c sorter.c \
 					execute_instructions.c sorter_utils.c small_sort.c \
 					image.c events.c draw.c sorter_utils2.c init_visu.c \
-					sort_tab.c
+					sort_tab.c generate_numbers.c
 SRC_PATH		= ./srcs/
 SRC				= $(addprefix $(SRC_PATH),$(SRC_NAME))
 OBJ_NAME		= $(SRC_NAME:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: Mohamed <Mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 12:20:59 by Mohamed           #+#    #+#             */
-/*   Updated: 2019/06/12 08:31:03 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/15 01:17:23 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void			write_instructions(
 		}
 }
 
-static int		add_instruction(char *input, t_list **head)
+int		add_instruction(char *input, t_list **head)
 {
 	int						i;
 	const t_instruction		*instructions;
@@ -61,17 +61,21 @@ static int		add_instruction(char *input, t_list **head)
 	return (0);
 }
 
-int		read_instructions(t_list **head)
+int		read_instructions(t_list **head, char *file)
 {
 	char	*input;
 	int		ret;
+	int fd;
 
 	*head = NULL;
 	ret = 1;
 	input = NULL;
+	fd = 0;
+	if (file && (fd = open(file, O_RDONLY)) == -1)
+		return (-1);
 	while (ret == 1)
 	{
-		if ((ret = get_next_line(0, &input, '\n')) > 0)
+		if ((ret = get_next_line(fd, &input, '\n')) > 0)
 		{
 			if ((ret = add_instruction(input, head)) == 0)
 			{
@@ -81,7 +85,7 @@ int		read_instructions(t_list **head)
 		}
 		ft_strdel(&input);
 	}
-	if (!ret)
-		ft_lstrev(head);
+	ft_lstrev(head);
+	fd > 0 ? close(fd) : 0;
 	return (ret);
 }

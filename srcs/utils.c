@@ -6,7 +6,7 @@
 /*   By: Mohamed <Mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 12:19:41 by Mohamed           #+#    #+#             */
-/*   Updated: 2019/06/13 13:30:57 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/14 20:58:11 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /*
 ** Creates a new node and add it to my list.
 */
+
 int		add_to_list(t_list **head, void *data, size_t size)
 {
 	t_list *node;
@@ -39,7 +40,7 @@ void	print_list(t_list *list, char number)
 	else
 		ft_printf(
 		ANSI_BCYAN"======================INSTRUCTIONS======================\n");
-	while(list)
+	while (list)
 	{
 		if (number)
 			ft_printf("number[%d]: %d\n", i++, *((int *)list->content));
@@ -61,7 +62,7 @@ void	print_lists(t_list *stack_a, t_list *stack_b, t_list *instructions)
 		print_list(instructions, 0);
 }
 
-void		destroy_lists(t_list *stack_a, t_list *stack_b, t_list *instructions)
+void	destroy_lists(t_list *stack_a, t_list *stack_b, t_list *instructions)
 {
 	ft_lstdestroy(&stack_a);
 	ft_lstdestroy(&stack_b);

@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 10:04:50 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/14 19:36:04 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/15 00:09:09 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,26 +113,18 @@ int			check_nbs_left_b(t_list *stack, int size, int median)
 	return (1);
 }
 
-void launch_sort(int size, t_list **stack_a, t_list **stack_b, char dest)
+void 		ft_launch_sort(int size, t_list **stack_a, t_list **stack_b)
 {
-	if (dest == STACK_A)
-	{
-		if (size <= 3)
-			ft_sort_3(stack_a, STACK_A);
-		else if (size == 4)
-			ft_sort_4(stack_a, stack_b, STACK_A);
-		else if (size == 5)
-			ft_sort_5(stack_a, stack_b, STACK_A);
-	}
-	else if (dest == STACK_B && !is_rev_sorted(*stack_b))
-	{
-		if (size <= 3)
-			ft_sort_3(stack_b, STACK_B);
-		else if (size == 4)
-			ft_sort_4(stack_a, stack_b, STACK_B);
-		else if (size == 5)
-			ft_sort_5(stack_a, stack_b, STACK_B);
-	}
+	if (is_sorted(*stack_a))
+		return ;
+	if (size <= 3)
+		ft_sort_3(stack_a, STACK_A);
+	else if (size == 4)
+		ft_sort_4(stack_a, stack_b, STACK_A);
+	else if (size == 5)
+		ft_sort_5(stack_a, stack_b, STACK_A);
+	else
+		ft_sort(stack_a, stack_b, size, size, 1);
 }
 
 int		get_min_from_tab(int *tab, int size)
@@ -341,8 +333,8 @@ void            sortsmall(t_list **stack_a, t_list **stack_b, int size, int init
 	int min = ft_get_min_index(*stack_b);
 	if (*stack_b && min < size / 2)
 	{
-		ft_rotate(stack_a, NULL, BOTH);
-		ft_rotate(stack_b, NULL, NO_WRITE);
+		ft_rotate(stack_a, stack_b, BOTH);
+		// ft_rotate(stack_b, NULL, NO_WRITE);
 	}
 	else
 		ft_rotate(stack_a, NULL, STACK_A);
@@ -386,7 +378,7 @@ void            sortsmall(t_list **stack_a, t_list **stack_b, int size, int init
 	}
 }
 
-void		sorter_b(t_list **stack_a, t_list **stack_b, int size, int initial_size)
+void		ft_sort_b(t_list **stack_a, t_list **stack_b, int size, int initial_size)
 {
 	int median;
 	int i;
@@ -432,8 +424,8 @@ void		sorter_b(t_list **stack_a, t_list **stack_b, int size, int initial_size)
 			ft_push(stack_a, stack_b, STACK_A);
 			if (*((int *)(*stack_b)->content) != save[i] && *((int *)(*stack_b)->content) <= median)
 			{
-				ft_rotate(stack_a, NULL, BOTH);
-				ft_rotate(stack_b, NULL, NO_WRITE);
+				ft_rotate(stack_a, stack_b, BOTH);
+				// ft_rotate(stack_b, NULL, NO_WRITE);
 			}
 			else
 				ft_rotate(stack_a, NULL, STACK_A);
@@ -452,7 +444,7 @@ void		sorter_b(t_list **stack_a, t_list **stack_b, int size, int initial_size)
 			break ;
 		}
 	}
-	sorter_b(stack_a, stack_b, ft_lstsize(*stack_b), size);
+	ft_sort_b(stack_a, stack_b, ft_lstsize(*stack_b), size);
 }
 
 int			get_first(t_list *list, int size)
@@ -480,7 +472,7 @@ int			size_till_median(t_list *list, int median)
 	return (i);
 }
 
-void		sorter(t_list **stack_a, t_list **stack_b, int size, int initial_size, int first)
+void		ft_sort(t_list **stack_a, t_list **stack_b, int size, int initial_size, int first)
 {
 	int median;
 	int i;
@@ -489,6 +481,8 @@ void		sorter(t_list **stack_a, t_list **stack_b, int size, int initial_size, int
 	int index;
 	int ret;
 
+	if (size == 1)
+		ft_rotate(stack_a, stack_b, STACK_A);
 	if (size <= 1)
 		return ;
 	median = find_median(*stack_a, size);
@@ -517,8 +511,8 @@ void		sorter(t_list **stack_a, t_list **stack_b, int size, int initial_size, int
 		{
 			if (*stack_b && *((int *)(*stack_b)->content) <= tmp_med && ft_lstsize(*stack_b) > 5)
 			{
-				ft_rotate(stack_a, NULL, BOTH);
-				ft_rotate(stack_b, NULL, NO_WRITE);
+				ft_rotate(stack_a, stack_b, BOTH);
+				// ft_rotate(stack_b, NULL, NO_WRITE);
 			}
 			else
 				ft_rotate(stack_a, NULL, STACK_A);
@@ -539,8 +533,8 @@ void		sorter(t_list **stack_a, t_list **stack_b, int size, int initial_size, int
 			min = ft_get_min_index(*stack_b);
 			if (min > top_half_len / 2)
 			{
-				ft_reverse_rotate(stack_a, NULL, BOTH);
-				ft_reverse_rotate(stack_b, NULL, NO_WRITE);
+				ft_reverse_rotate(stack_a, stack_b, BOTH);
+				// ft_reverse_rotate(stack_b, NULL, NO_WRITE);
 			}
 			else
 				ft_reverse_rotate(stack_a, NULL, STACK_A);
@@ -549,7 +543,7 @@ void		sorter(t_list **stack_a, t_list **stack_b, int size, int initial_size, int
 	(void)ret;
 	int save = *((int *)(*stack_a)->content);
 	if (!is_rev_sorted(*stack_b))
-		sorter_b(stack_a, stack_b, top_half_len, top_half_len);
+		ft_sort_b(stack_a, stack_b, top_half_len, top_half_len);
 	else
 	{
 		i = -1;
@@ -560,7 +554,7 @@ void		sorter(t_list **stack_a, t_list **stack_b, int size, int initial_size, int
 			ft_rotate(stack_a, stack_b, STACK_A);
 	}
 	while (!is_size_sorted(*stack_a, size_till_median(*stack_a, save)))
-		sorter(stack_a, stack_b, size_till_median(*stack_a, save), initial_size, 0);
+		ft_sort(stack_a, stack_b, size_till_median(*stack_a, save), initial_size, 0);
 	if (size == initial_size)
 	{
 		i = -1;
@@ -569,8 +563,6 @@ void		sorter(t_list **stack_a, t_list **stack_b, int size, int initial_size, int
 		while (++i < haha)
 			ft_rotate(stack_a, NULL, STACK_A);
 		if (!is_size_sorted(*stack_a, size - top_half_len))
-		sorter(stack_a, stack_b, size - top_half_len, size - top_half_len, 0);
+		ft_sort(stack_a, stack_b, size - top_half_len, size - top_half_len, 0);
 	}
-		(void)initial_size;
-
 }

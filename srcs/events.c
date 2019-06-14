@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 08:35:21 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/13 06:22:48 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/15 00:47:46 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,29 @@ void		ft_reset(t_visu *visu)
 	visu->stack_a = visu->backup_list;
 	visu->stack_b = NULL;
 	visu->curr_instruction = 0;
-	visu->backup_list = NULL;
 	ft_create_backup(visu);
 }
+
+int			mouse_event(int b, int x, int y, t_visu *visu)
+{
+	(void)b;
+	if (x >= 895 && x <= 1019)
+	{
+		if (y >= 350 && y < 400)
+			ft_generate_numbers(1000, visu);
+		if (y >= 400 && y < 450)
+			ft_generate_numbers(500, visu);
+		if (y >= 450 && y < 500)
+			ft_generate_numbers(100, visu);
+		if (y >= 500 && y < 550)
+			ft_generate_numbers(50, visu);
+		if (y >= 550 && y < 600)
+			ft_generate_numbers(10, visu);
+		visu->pause = 1;
+	}
+	return (1);
+}
+
 
 int			key_event(int keycode, t_visu *visu)
 {
@@ -107,12 +127,17 @@ int			key_event(int keycode, t_visu *visu)
 		ft_free_visu(visu);
 		exit(0);
 	}
+	if (keycode == 1)
+		ft_generate_numbers(100, visu);
 	if (keycode == SPACE)
 		visu->pause = !visu->pause;
 	if (keycode == TAB)
 		visu->colormode = !visu->colormode;
 	if (keycode == RKEY)
+	{
 		ft_reset(visu);
+		visu->pause = 1;
+	}
 	if (keycode == RIGHTARROW &&
 				visu->curr_instruction < (size_t)visu->instructions_size - 1)
 	{

@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 01:49:30 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/13 16:23:33 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/15 00:33:57 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define BOTH				2
 # define VISU				(1 << 0)
 # define FROM_FILE			(1 << 1)
+# define INSTRU_FROM_FILE	(1 << 2)
 # define SLOW				1
 # define NORMAL				2
 
@@ -47,9 +48,11 @@ int		parse_args(int ac, char **av, t_list **head, char *flags);
 /*
 **	READ_INSTRUCTIONS.C
 */
-int		read_instructions(t_list **head);
+int		read_instructions(t_list **head, char *file);
 void	write_instructions(void			(*function)(t_list **stack_a,
 							t_list **unused, char write), char dest);
+int		read_from_file(char *file, t_list **head);
+int		add_instruction(char *input, t_list **head);
 
 /*
 **	UTILS.C
@@ -72,8 +75,9 @@ void	execute_instructions(t_list **stack_a, t_list **stack_b,
 /*
 ** SORTER.C
 */
-void	sorter(t_list **stack_a, t_list **stack_b, int size, int initial_size, int first);
+void	ft_sort(t_list **stack_a, t_list **stack_b, int size, int initial_size, int first);
 void	sort_small(t_list **stack, char dest);
+void 	ft_launch_sort(int size, t_list **stack_a, t_list **stack_b);
 /*
 ** SMALL_SORT.C
 */
@@ -96,6 +100,6 @@ int		ft_get_min_value(t_list *stack);
 /*
 ** SORT_TAB.C
 */
-void		sort_tab(int *tab, int size);
+void	sort_tab(int *tab, int size);
 
 #endif

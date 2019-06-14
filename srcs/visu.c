@@ -6,11 +6,10 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 08:14:21 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/11 11:35:04 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/14 20:56:20 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "visu.h"
 
 int		main(int ac, char **av)

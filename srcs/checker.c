@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 01:20:57 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/12 03:09:44 by Mohamed          ###   ########.fr       */
+/*   Updated: 2019/06/15 01:18:12 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int		main(int ac, char **av)
 
 	if (parse_args(ac, av, &stack_a, &flags) == -1)
 		return (!ft_lstdestroy(&stack_a));
-	if (read_instructions(&instructions))
+	if (read_instructions(&instructions,
+									(flags & INSTRU_FROM_FILE) ? av[2] : NULL))
 		return (ft_lstdestroy(&instructions) == ft_lstdestroy(&stack_a));
 	execute_instructions(&stack_a, &stack_b, instructions);
 	if (flags & VISU)

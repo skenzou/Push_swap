@@ -6,12 +6,11 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 08:20:10 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/13 06:08:58 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/15 01:16:03 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visu.h"
-#include "push_swap.h"
 
 int					ft_free_visu(t_visu *visu)
 {
@@ -27,7 +26,7 @@ int					ft_free_visu(t_visu *visu)
 	free(visu->mlx_ptr);
 	free(visu->win_ptr);
 	free(visu->img.ptr);
-	destroy_lists(visu->stack_a, visu->stack_b, NULL);
+	destroy_lists(visu->stack_a, visu->stack_b, visu->backup_list);
 	return (-1);
 }
 
@@ -98,6 +97,7 @@ void 				ft_create_backup(t_visu *visu)
 	t_list		*list;
 
 	list = visu->stack_a;
+	visu->backup_list = NULL;
 	while (list)
 	{
 		add_to_list(&visu->backup_list, list->content, sizeof(list->content));
@@ -129,6 +129,24 @@ int					ft_init_colors(t_visu *visu)
 	}
 	return (0);
 }
+int					set_values(t_visu *visu, t_list *instructions)
+{
+	if (ft_lst_to_tab(visu, instructions))
+		return (ft_free_visu(visu));
+	visu->item_max_height = HEIGHT / visu->stack_size;
+	visu->min_value = ft_get_min_value(visu->stack_a);
+	visu->max_value = ft_get_max_value(visu->stack_a);
+	visu->range = visu->max_value - visu->min_value;
+	visu->item_max_width = visu->range;
+	if (ft_init_color_table(visu) == -1)
+		return (ft_free_visu(visu));
+	if (ft_init_colors(visu) == -1)
+		return (ft_free_visu(visu));
+	free(visu->color_table);
+	ft_lstdestroy(&visu->backup_list);
+	ft_create_backup(visu);
+	return (0);
+}
 
 int					ft_init_visu(t_visu *visu, int ac, char **av)
 {
@@ -136,34 +154,22 @@ int					ft_init_visu(t_visu *visu, int ac, char **av)
 
 	ft_bzero((void *)visu, sizeof(t_visu));
 	ft_bzero((void *)&visu->img, sizeof(t_image));
+	if ((visu->stack_size =
+		parse_args(ac, av, &visu->stack_a, &visu->flags)) == -1)
+		return (ft_free_visu(visu));
+	instructions = NULL;
+	if (read_instructions(&instructions,
+							(visu->flags & INSTRU_FROM_FILE) ? av[1] : NULL))
+		return (ft_free_visu(visu));
+	if (set_values(visu, instructions))
+		return (-1);
 	if (!(visu->mlx_ptr = mlx_init()))
 		return (-1);
 	visu->win_ptr = mlx_new_window(visu->mlx_ptr, WIDTH, HEIGHT, "push_swap");
 	if (!visu->win_ptr)
 		return (ft_free_visu(visu));
-	if ((visu->stack_size =
-		parse_args(ac, av, &visu->stack_a, &visu->flags)) == -1)
-		return (ft_free_visu(visu));
-	instructions = NULL;
-	if (read_instructions(&instructions))
-		return (ft_free_visu(visu));
-	if (ft_lst_to_tab(visu, instructions))
-		return (ft_free_visu(visu));
-	visu->pause = 1;
-	visu->colormode = CLERP;
-	visu->item_max_height = HEIGHT / visu->stack_size;
-	visu->min_value = ft_get_min_value(visu->stack_a);
-	visu->max_value = ft_get_max_value(visu->stack_a);
-	visu->range = visu->max_value - visu->min_value;
-	visu->item_max_width = visu->range;
 	ft_create_image(visu, WIDTH, HEIGHT);
-	if (ft_init_color_table(visu) == -1)
-		return (ft_free_visu(visu));
-	if (ft_init_colors(visu) == -1)
-		return (ft_free_visu(visu));
-	free(visu->color_table);
-	ft_create_backup(visu);
-	// mlx_mouse_hook(visu->win_ptr, &menu_event, w);
+	mlx_mouse_hook(visu->win_ptr, &mouse_event, visu);
 	mlx_hook(visu->win_ptr, 2, 1L << 0, &key_event, visu);
 	mlx_loop_hook(visu->mlx_ptr, &refresh, visu);
 	mlx_hook(visu->win_ptr, 17, 1L << 17, &close_click, visu);

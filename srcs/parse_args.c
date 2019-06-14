@@ -6,7 +6,7 @@
 /*   By: Mohamed <Mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 12:17:57 by Mohamed           #+#    #+#             */
-/*   Updated: 2019/06/09 08:27:40 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/15 01:20:21 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,19 +71,26 @@ static	int		check_flags(char ***av, int *ac, char *flags)
 			*flags |= FROM_FILE;
 		else if (*str == 'v')
 			*flags |= VISU;
+		else if (*str == 'i')
+			*flags |= INSTRU_FROM_FILE;
 		else
 		{
 			ft_putstr_fd("push_swap/checker: illegal option", 2);
-			ft_putendl_fd("\nusage: push_swap/checker [-v] [numbers ...]", 2);
+			ft_putendl_fd("\nusage: push_swap/checker [-vfi] [numbers ...]", 2);
 			return (-1);
 		}
 		str++;
+	}
+	if ((*flags & INSTRU_FROM_FILE) && (*flags & FROM_FILE))
+	{
+		ft_putendl_fd("Can't have -i and -f together", 2);
+		return (-1);
 	}
 	(*ac)-- && (*av)++;
 	return (0);
 }
 
-static int		read_from_file(char *file, t_list **head)
+int		read_from_file(char *file, t_list **head)
 {
 	int		fd;
 	char	**split;
@@ -136,6 +143,8 @@ int		parse_args(int ac, char **av, t_list **head, char *flags)
 	count = 0;
 	if (check_flags(&av, &ac, flags) || ac == 1)
 		return (-1);
+	if (*flags & INSTRU_FROM_FILE)
+		av++ && ac--;
 	if (*flags & FROM_FILE)
 		return (read_from_file(av[1], head));
 	while (++i < ac && (j = -1))

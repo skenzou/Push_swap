@@ -6,12 +6,11 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 09:33:38 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/13 20:19:05 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/14 23:48:46 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visu.h"
-#include "push_swap.h"
 
 void		ft_draw_item(t_visu *visu, int value, int y_offset, int x_offset,
 																	int color)
@@ -77,6 +76,38 @@ void		ft_print_next_instructions(t_visu *visu)
 	}
 }
 
+void		ft_print_buttons(t_visu *visu)
+{
+	int i;
+	int j;
+	int buttons;
+	int end_i;
+	int end_j;
+
+
+	buttons = -1;
+	end_i = 160 + ITEM_WIDTH;
+	j = 350;
+	while (++buttons < 5)
+	{
+
+		i = ITEM_WIDTH + 35;
+		while (++i < end_i)
+		{
+			ft_put_pixel_img(&visu->img, i, j, 0xFFFFFF);
+			ft_put_pixel_img(&visu->img, i, j + 50, 0xFFFFFF);
+		}
+		end_j = j + 50;
+		i = ITEM_WIDTH + 35;
+		while (j < end_j)
+		{
+			ft_put_pixel_img(&visu->img, i, j, 0xFFFFFF);
+			ft_put_pixel_img(&visu->img, end_i, j, 0xFFFFFF);
+			j++;
+		}
+	}
+}
+
 void		ft_put_infos(t_visu *visu)
 {
 	char *size;
@@ -108,21 +139,20 @@ void		ft_put_infos(t_visu *visu)
 	"Current:");
 	mlx_string_put(visu->mlx_ptr, visu->win_ptr, ITEM_WIDTH + 90, 180, WHITE,
 	current);
+	mlx_string_put(visu->mlx_ptr, visu->win_ptr,  ITEM_WIDTH + 80, 360, WHITE,
+	"1000");
+	mlx_string_put(visu->mlx_ptr, visu->win_ptr,  ITEM_WIDTH + 82, 410, WHITE,
+	"500");
+	mlx_string_put(visu->mlx_ptr, visu->win_ptr, ITEM_WIDTH + 83, 460, WHITE,
+	"100");
+	mlx_string_put(visu->mlx_ptr, visu->win_ptr, ITEM_WIDTH + 86, 510, WHITE,
+	"50");
+	mlx_string_put(visu->mlx_ptr, visu->win_ptr, ITEM_WIDTH + 86, 560, WHITE,
+	"10");
 	ft_print_next_instructions(visu);
 	free(current);
 	free(size);
 	free(instructions);
-// 		 t_list *list;
-// 	list = visu->stack_a;
-// 	 int i = 0;
-//
-// 	while (list)
-// 	{
-// 		mlx_string_put(visu->mlx_ptr, visu->win_ptr, 10 , 1 + i, WHITE,
-// 		ft_itoa(((t_item *)list->content)->value));
-// 		i += 13;
-// 		list = list->next;
-// 	}
 }
 
 void		ft_draw(t_visu *visu)
@@ -137,6 +167,7 @@ void		ft_draw(t_visu *visu)
 	offset_a = 0;
 	offset_b = 0;
 	ft_draw_middle(visu);
+	ft_print_buttons(visu);
 	while (stack_a || stack_b)
 	{
 		if (stack_a)
