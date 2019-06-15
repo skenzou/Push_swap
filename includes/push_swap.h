@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 01:49:30 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/15 00:33:57 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/15 15:55:32 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,6 @@
 # define BOTH				2
 # define VISU				(1 << 0)
 # define FROM_FILE			(1 << 1)
-# define INSTRU_FROM_FILE	(1 << 2)
-# define SLOW				1
-# define NORMAL				2
 
 typedef struct	s_instruction
 {
@@ -41,65 +38,93 @@ typedef struct	s_instruction
 }				t_instruction;
 
 /*
-**	PARSE_ARGS.C
+** ***************************COMMON***************************
 */
-int		parse_args(int ac, char **av, t_list **head, char *flags);
-
+/*
+** FT_ARG_CHECKER.C
+*/
+int				ft_arg_checker(t_list **head, char *input, int *count);
+/*
+**	FT_EXECUTE_INSTRUCTIONS.C
+*/
+void			ft_swap(t_list **stack, t_list **unused, char write);
+void			ft_push(t_list **first, t_list **second, char write);
+void			ft_reverse_rotate(t_list **stack, t_list **unused, char write);
+void			ft_rotate(t_list **stack, t_list **unused, char write);
+void			ft_execute_instructions(t_list **stack_a, t_list **stack_b,
+														t_list *instructions);
+/*
+**	FT_PARSE_ARGS.C
+*/
+int				ft_parse_args(int ac, char **av, t_list **head, char *flags);
+/*
+** FT_READ_FROM_FILE.C
+*/
+int				ft_read_from_file(char *file, t_list **head);
 /*
 **	READ_INSTRUCTIONS.C
 */
-int		read_instructions(t_list **head, char *file);
-void	write_instructions(void			(*function)(t_list **stack_a,
-							t_list **unused, char write), char dest);
-int		read_from_file(char *file, t_list **head);
-int		add_instruction(char *input, t_list **head);
+int				ft_read_instructions(t_list **head, char *file);
+void			ft_write_instructions(void (*function)(t_list **stack_a,
+									t_list **unused, char write), char dest);
+/*
+**	FT_UTILS.C
+*/
+int				ft_add_to_list(t_list **head, void *data, size_t size);
+int				ft_is_not_in_list(int number, t_list *list);
+void			ft_print_lists(t_list *stack_a, t_list *stack_b,
+														t_list *instructions);
+void			ft_destroy_lists(t_list *stack_a, t_list *stack_b,
+														t_list *instruction);
 
 /*
-**	UTILS.C
+** FT_UTILS2.C
 */
-int		add_to_list(t_list **head, void *data, size_t size);
-void	print_list(t_list *list, char number);
-void	print_lists(t_list *stack_a, t_list *stack_b, t_list *instructions);
-void	destroy_lists(t_list *stack_a, t_list *stack_b, t_list *instructions);
-int		is_sorted(t_list *stack);
+int				ft_get_min_value(t_list *stack);
+int				ft_get_max_value(t_list *stack);
+int				ft_is_sorted(t_list *stack);
+void			ft_execute_instruction(t_instruction *instruction,
+											t_list **stack_a, t_list **stack_b);
+/*
+** ************************************************************
+*/
 
 /*
-**	EXECUTE_INSTRUCTIONS.C
+** **************************PUSH_SWAP*************************
 */
-void	ft_swap(t_list **stack, t_list **unused, char write);
-void	ft_push(t_list **first, t_list **second, char write);
-void	ft_reverse_rotate(t_list **stack, t_list **unused, char write);
-void	ft_rotate(t_list **stack, t_list **unused, char write);
-void	execute_instructions(t_list **stack_a, t_list **stack_b,
-											t_list *instructions);
 /*
-** SORTER.C
+** FT_SORT_2.C
 */
-void	ft_sort(t_list **stack_a, t_list **stack_b, int size, int initial_size, int first);
-void	sort_small(t_list **stack, char dest);
-void 	ft_launch_sort(int size, t_list **stack_a, t_list **stack_b);
+void			ft_sort_2(t_list **stack, char dest);
 /*
-** SMALL_SORT.C
+** FT_SORT_3.C
 */
-void	ft_sort_2(t_list **stack, char dest);
-void	ft_sort_3(t_list **stack, char dest);
-void	ft_sort_4(t_list **stack_a, t_list **stack_b, char dest);
-void	ft_sort_5(t_list **stack_a, t_list **stack_b, char dest);
+void			ft_sort_3(t_list **stack, char dest);
 /*
-** SORTER_UTILS.C
+** FT_SORT_4.C
 */
-int		ft_get_min_index(t_list *stack);
-int		ft_get_max_index(t_list *stack);
-int		get_last(t_list *list);
-int		is_rev_sorted(t_list *stack);
+void			ft_sort_4(t_list **stack_a, t_list **stack_b, char dest);
 /*
-** SORTER_UTILS.C
+** FT_SORT_5.C
 */
-int		ft_get_max_value(t_list *stack);
-int		ft_get_min_value(t_list *stack);
+void			ft_sort_5(t_list **stack_a, t_list **stack_b, char dest);
 /*
-** SORT_TAB.C
+** FT_SORT.C
 */
-void	sort_tab(int *tab, int size);
+void			ft_sort(t_list **stack_a, t_list **stack_b, int size,
+												int initial_size, int first);
+void			sort_small(t_list **stack, char dest);
+void			ft_launch_sort(int size, t_list **stack_a, t_list **stack_b);
+/*
+** FT_UTILS.C
+*/
+int				ft_get_min_index(t_list *stack);
+int				ft_get_max_index(t_list *stack);
+int				ft_get_last(t_list *list);
+int				ft_is_rev_sorted(t_list *stack);
+void			ft_sort_tab(int *tab, int size);
+/*
+** ************************************************************
+*/
 
 #endif

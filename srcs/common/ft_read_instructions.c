@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_instructions.c                                :+:      :+:    :+:   */
+/*   ft_read_instructions.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Mohamed <Mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 12:20:59 by Mohamed           #+#    #+#             */
-/*   Updated: 2019/06/15 01:17:23 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/15 13:20:35 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static const t_instruction	 *get_existing_instructions()
+static const t_instruction		*get_existing_instructions(void)
 {
-	static const t_instruction tab[NB_INSTRUCTIONS] = {
+	static const t_instruction	tab[NB_INSTRUCTIONS] = {
 		{"rra", STACK_A, &ft_reverse_rotate},
 		{"rrb", STACK_B, &ft_reverse_rotate},
 		{"rrr", BOTH, &ft_reverse_rotate},
@@ -27,12 +27,12 @@ static const t_instruction	 *get_existing_instructions()
 		{"rb", STACK_B, &ft_rotate},
 		{"rr", BOTH, &ft_rotate},
 	};
+
 	return (tab);
 }
 
-void			write_instructions(
-		void			(*function)(t_list **stack_a, t_list **unused,
-			 											char write), char dest)
+void							ft_write_instructions(
+	void (*function)(t_list **stack_a, t_list **unused, char write), char dest)
 {
 	int						i;
 	const t_instruction		*instructions;
@@ -40,14 +40,15 @@ void			write_instructions(
 	i = -1;
 	instructions = get_existing_instructions();
 	while (++i < NB_INSTRUCTIONS)
-		if(instructions[i].function == function && instructions[i].dest == dest)
+		if (instructions[i].function == function
+												&& instructions[i].dest == dest)
 		{
 			ft_putendl(instructions[i].op);
 			return ;
 		}
 }
 
-int		add_instruction(char *input, t_list **head)
+static int						add_instruction(char *input, t_list **head)
 {
 	int						i;
 	const t_instruction		*instructions;
@@ -55,17 +56,19 @@ int		add_instruction(char *input, t_list **head)
 	i = -1;
 	instructions = get_existing_instructions();
 	while (++i < NB_INSTRUCTIONS)
+	{
 		if (ft_strequ(input, instructions[i].op))
-			return (add_to_list(head, (void *)&instructions[i],
-														sizeof(t_instruction)));
+			return (ft_add_to_list(head, (void *)&instructions[i],
+			sizeof(t_instruction)));
+	}
 	return (0);
 }
 
-int		read_instructions(t_list **head, char *file)
+int								ft_read_instructions(t_list **head, char *file)
 {
 	char	*input;
 	int		ret;
-	int fd;
+	int		fd;
 
 	*head = NULL;
 	ret = 1;

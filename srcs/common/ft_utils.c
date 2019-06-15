@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Mohamed <Mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 12:19:41 by Mohamed           #+#    #+#             */
-/*   Updated: 2019/06/14 20:58:11 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/15 13:25:06 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** Creates a new node and add it to my list.
 */
 
-int		add_to_list(t_list **head, void *data, size_t size)
+int				ft_add_to_list(t_list **head, void *data, size_t size)
 {
 	t_list *node;
 
@@ -26,7 +26,7 @@ int		add_to_list(t_list **head, void *data, size_t size)
 	return (1);
 }
 
-void	print_list(t_list *list, char number)
+static void		ft_print_list(t_list *list, char number)
 {
 	int i;
 
@@ -53,29 +53,31 @@ void	print_list(t_list *list, char number)
 		"========================================================\n"ANSI_RESET);
 }
 
-void	print_lists(t_list *stack_a, t_list *stack_b, t_list *instructions)
+void			ft_print_lists(t_list *stack_a, t_list *stack_b,
+														t_list *instructions)
 {
-	print_list(stack_a, 1);
+	ft_print_list(stack_a, 1);
 	if (stack_b)
-		print_list(stack_b, 2);
+		ft_print_list(stack_b, 2);
 	if (instructions)
-		print_list(instructions, 0);
+		ft_print_list(instructions, 0);
 }
 
-void	destroy_lists(t_list *stack_a, t_list *stack_b, t_list *instructions)
+void			ft_destroy_lists(t_list *stack_a, t_list *stack_b,
+														t_list *instructions)
 {
 	ft_lstdestroy(&stack_a);
 	ft_lstdestroy(&stack_b);
 	ft_lstdestroy(&instructions);
 }
 
-int		is_sorted(t_list *stack)
+int				ft_is_not_in_list(int number, t_list *list)
 {
-	while (stack && stack->next)
+	while (list)
 	{
-		if ((*(int *)stack->content) > (*(int *)stack->next->content))
+		if (number == *((int *)list->content))
 			return (0);
-		stack = stack->next;
+		list = list->next;
 	}
 	return (1);
 }

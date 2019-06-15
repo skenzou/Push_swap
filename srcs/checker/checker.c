@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 01:20:57 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/15 01:18:12 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/15 15:33:28 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,13 @@ int		main(int ac, char **av)
 	t_list	*stack_b;
 	char	flags;
 
-	if (parse_args(ac, av, &stack_a, &flags) == -1)
+	if (ft_parse_args(ac, av, &stack_a, &flags) == -1)
 		return (!ft_lstdestroy(&stack_a));
-	if (read_instructions(&instructions,
-									(flags & INSTRU_FROM_FILE) ? av[2] : NULL))
+	if (ft_read_instructions(&instructions, NULL))
 		return (ft_lstdestroy(&instructions) == ft_lstdestroy(&stack_a));
-	execute_instructions(&stack_a, &stack_b, instructions);
+	ft_execute_instructions(&stack_a, &stack_b, instructions);
 	if (flags & VISU)
-		print_lists(stack_a, stack_b, NULL);
-	destroy_lists(stack_a, stack_b, instructions);
+		ft_print_lists(stack_a, stack_b, NULL);
+	ft_destroy_lists(stack_a, stack_b, instructions);
 	return (0);
 }

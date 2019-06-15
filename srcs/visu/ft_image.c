@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image.c                                            :+:      :+:    :+:   */
+/*   ft_image.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 08:54:33 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/15 02:53:01 by Mohamed          ###   ########.fr       */
+/*   Updated: 2019/06/15 14:15:57 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visu.h"
 
-int				ft_put_pixel_img(t_image *img, int x, int y, int color)
+int			ft_put_pixel_img(t_image *img, int x, int y, int color)
 {
 	int offset;
 
@@ -27,7 +27,7 @@ int				ft_put_pixel_img(t_image *img, int x, int y, int color)
 	return (1);
 }
 
-void			ft_create_image(t_image *img, int width, int height, t_visu *visu)
+void		ft_create_image(t_image *img, int width, int height, t_visu *visu)
 {
 	img->ptr = mlx_new_image(visu->mlx_ptr, width, height);
 	img->width = width;

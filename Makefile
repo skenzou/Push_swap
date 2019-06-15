@@ -6,7 +6,7 @@
 #    By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/03 09:24:41 by midrissi          #+#    #+#              #
-#    Updated: 2019/06/14 22:00:12 by midrissi         ###   ########.fr        #
+#    Updated: 2019/06/15 15:17:21 by midrissi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,10 @@ INC_PATH		= ./includes/
 INC_NAME		= push_swap.h visu.h
 INC_FPATH		= $(addprefix $(INC_PATH),$(INC_NAME))
 INC				= $(addprefix -I,$(INC_PATH))
+COMMON_DIR		= common/
+PUSH_SWAP_DIR	= push_swap/
+VISU_DIR		= visu/
+CHECKER_DIR		= checker/
 
 #MINILIBX
 MLX_PATH		= ./minilibx/
@@ -57,27 +61,50 @@ MLX_LINK		= -L $(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
 MLX_INC			= -I $(MLX_PATH)
 
 #SRCS
-SRC_NAME		= parse_args.c read_instructions.c utils.c sorter.c \
-					execute_instructions.c sorter_utils.c small_sort.c \
-					image.c events.c draw.c sorter_utils2.c init_visu.c \
-					sort_tab.c generate_numbers.c
+SRC_NAME		= $(COMMON_DIR)ft_arg_checker.c \
+				  $(COMMON_DIR)ft_execute_instructions.c \
+				  $(COMMON_DIR)ft_parse_args.c  \
+				  $(COMMON_DIR)ft_read_from_file.c \
+				  $(COMMON_DIR)ft_read_instructions.c \
+				  $(COMMON_DIR)ft_utils.c \
+				  $(COMMON_DIR)ft_utils2.c \
+				  							\
+				  $(PUSH_SWAP_DIR)ft_sort_2.c \
+				  $(PUSH_SWAP_DIR)ft_sort_3.c \
+				  $(PUSH_SWAP_DIR)ft_sort_4.c \
+				  $(PUSH_SWAP_DIR)ft_sort_5.c \
+				  $(PUSH_SWAP_DIR)ft_sort.c \
+				  $(PUSH_SWAP_DIR)ft_utils.c \
+				  							\
+				  $(VISU_DIR)ft_close_event.c \
+				  $(VISU_DIR)ft_draw.c \
+				  $(VISU_DIR)ft_generate_numbers.c \
+				  $(VISU_DIR)ft_image.c \
+				  $(VISU_DIR)ft_init_colors.c \
+				  $(VISU_DIR)ft_init_visu.c \
+				  $(VISU_DIR)ft_key_event.c \
+				  $(VISU_DIR)ft_mouse_event.c \
+				  $(VISU_DIR)ft_put_infos.c \
+				  $(VISU_DIR)ft_refresh.c \
+				  $(VISU_DIR)ft_utils.c \
+
 SRC_PATH		= ./srcs/
 SRC				= $(addprefix $(SRC_PATH),$(SRC_NAME))
 OBJ_NAME		= $(SRC_NAME:.c=.o)
 OBJ				= $(addprefix $(OBJ_PATH),$(OBJ_NAME))
 
 #PUSH_SWAP
-PUSH_SWAP_NAME	= push_swap.c
+PUSH_SWAP_NAME	= $(PUSH_SWAP_DIR)push_swap.c
 PUSH_SWAP_FPATH	= $(addprefix $(SRC_PATH),$(PUSH_SWAP_NAME))
 PSOBJ			= $(addprefix $(OBJ_PATH)/, $(PUSH_SWAP_NAME:.c=.o))
 
 #CHECKER
-CHECKER_NAME	= checker.c
+CHECKER_NAME	= $(CHECKER_DIR)checker.c
 CHECKER_FPATH	= $(addprefix $(SRC_PATH),$(CHECKER_NAME))
 CHECKEROBJ		= $(addprefix $(OBJ_PATH)/, $(CHECKER_NAME:.c=.o))
 
 #VISU
-VISU_NAME		= visu.c
+VISU_NAME		= $(VISU_DIR)visu.c
 VISU_FPATH		= $(addprefix $(SRC_PATH),$(VISU_NAME))
 VISUOBJ			= $(addprefix $(OBJ_PATH)/, $(VISU_NAME:.c=.o))
 
@@ -118,6 +145,10 @@ $(VISUOBJ) : $(VISU_FPATH) $(INC_FPATH)
 #SRCS
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c $(INC_FPATH)
 		@mkdir -p $(OBJ_PATH)
+		@mkdir -p $(OBJ_PATH)$(VISU_DIR)
+		@mkdir -p $(OBJ_PATH)$(CHECKER_DIR)
+		@mkdir -p $(OBJ_PATH)$(COMMON_DIR)
+		@mkdir -p $(OBJ_PATH)$(PUSH_SWAP_DIR)
 		@$(CC) $(C_FLAGS) $(INC) $(MLX_INC) -o $@ -c $<
 		@printf "\r\033[K$(MSG) $(_BOLD)$(_CYAN)%-$(LONGEST)s\$(_END)" $(notdir $<)
 

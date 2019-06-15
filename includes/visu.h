@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 08:12:49 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/15 02:53:17 by Mohamed          ###   ########.fr       */
+/*   Updated: 2019/06/15 15:54:13 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define CLERP			0
 # define RKEY			15
 # define TAB			48
+# define VALUES			".values"
+# define INSTRUCTIONS	".instructions"
 
 typedef struct		s_image
 {
@@ -71,35 +73,53 @@ typedef struct		s_item
 	int					color;
 }					t_item;
 
-
 /*
-** INIT_VISU.C
+**	FT_CLOSE_EVENT.C
 */
-int				ft_init_visu(t_visu *visu, int ac, char **av);
-int				ft_free_visu(t_visu *visu);
-void 			ft_create_backup(t_visu *visu);
-int				ft_set_visu_values(t_visu *visu, t_list *instructions);
-void 			ft_create_backup(t_visu *visu);
-/*
-**	EVENTS.C
-*/
-int				close_click(t_visu *visu);
-int				refresh(t_visu *w);
-int				key_event(int keycode, t_visu *visu);
-int				mouse_event(int b, int x, int y, t_visu *visu);
-/*
-** IMAGE.C
-*/
-int				ft_put_pixel_img(t_image *img, int x, int y, int color);
-void			ft_create_image(t_image *img, int width, int height, t_visu *visu);
+int					ft_close_event(t_visu *v);
 /*
 ** FT_DRAW.C
 */
-void			ft_draw(t_visu *visu);
-void			ft_put_infos(t_visu *visu);
+void				ft_draw(t_visu *visu);
 /*
 ** FT_GENERATE_NUMBERS.C
 */
-void			ft_generate_numbers(int size, t_visu *visu);
+void				ft_generate_numbers(int size, t_visu *visu);
+/*
+** FT_IMAGE.C
+*/
+int					ft_put_pixel_img(t_image *img, int x, int y, int color);
+void				ft_create_image(t_image *img, int width, int height,
+																t_visu *visu);
+/*
+** FT_INIT_COLORS.C
+*/
+void				ft_init_colors(t_visu *visu);
+/*
+** FT_INIT_VISU.C
+*/
+int					ft_init_visu(t_visu *visu, int ac, char **av);
+void				ft_create_backup(t_visu *visu);
+int					ft_set_visu_values(t_visu *visu, t_list *instructions);
+/*
+**	FT_KEY_EVENT.C
+*/
+int					ft_key_event(int keycode, t_visu *visu);
+/*
+**	FT_MOUSE_EVENT.C
+*/
+int					ft_mouse_event(int b, int x, int y, t_visu *visu);
+/*
+**	FT_PUT_INFOS.C
+*/
+void				ft_put_infos(t_visu *visu);
+/*
+**	FT_REFRESH.C
+*/
+int					ft_refresh(t_visu *visu);
+/*
+**	FT_UTILS.C
+*/
+int					ft_free_visu(t_visu *visu);
 
 #endif
