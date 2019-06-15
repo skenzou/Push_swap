@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 08:35:21 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/15 00:47:46 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/15 03:15:30 by Mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ static void		ft_execute_instruction(t_instruction *instruction,
 
 int			refresh(t_visu *visu)
 {
+	visu->sleep--;
+	if (visu->sleep > 0)
+		return (1);
 	if (visu->curr_instruction == visu->instructions_size)
 		visu->pause = 1;
 	if (visu->curr_instruction < visu->instructions_size && !visu->pause)
@@ -56,7 +59,7 @@ int			refresh(t_visu *visu)
 		visu->curr_instruction++;
 	}
 	mlx_destroy_image(visu->mlx_ptr, visu->img.ptr);
-	ft_create_image(visu, WIDTH, HEIGHT);
+	ft_create_image(&visu->img, WIDTH, HEIGHT, visu);
 	ft_draw(visu);
 	mlx_put_image_to_window(visu->mlx_ptr, visu->win_ptr, visu->img.ptr, 0, 0);
 	ft_put_infos(visu);
@@ -101,19 +104,23 @@ void		ft_reset(t_visu *visu)
 
 int			mouse_event(int b, int x, int y, t_visu *visu)
 {
+	int start;
 	(void)b;
 	if (x >= 895 && x <= 1019)
 	{
-		if (y >= 350 && y < 400)
+		visu->sleep = 5;
+		if (y >= 350 && y < 400 && (start = 350))
 			ft_generate_numbers(1000, visu);
-		if (y >= 400 && y < 450)
+		if (y >= 400 && y < 450 && (start = 400))
 			ft_generate_numbers(500, visu);
-		if (y >= 450 && y < 500)
+		if (y >= 450 && y < 500 && (start = 450))
 			ft_generate_numbers(100, visu);
-		if (y >= 500 && y < 550)
+		if (y >= 500 && y < 550 && (start = 500))
 			ft_generate_numbers(50, visu);
-		if (y >= 550 && y < 600)
+		if (y >= 550 && y < 600 && (start = 550))
 			ft_generate_numbers(10, visu);
+		mlx_put_image_to_window(visu->mlx_ptr, visu->win_ptr,
+										visu->anim.ptr, ITEM_WIDTH + 35, start);
 		visu->pause = 1;
 	}
 	return (1);
@@ -127,8 +134,6 @@ int			key_event(int keycode, t_visu *visu)
 		ft_free_visu(visu);
 		exit(0);
 	}
-	if (keycode == 1)
-		ft_generate_numbers(100, visu);
 	if (keycode == SPACE)
 		visu->pause = !visu->pause;
 	if (keycode == TAB)

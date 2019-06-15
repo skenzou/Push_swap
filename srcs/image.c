@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 08:54:33 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/14 20:55:32 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/15 02:53:01 by Mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@ int				ft_put_pixel_img(t_image *img, int x, int y, int color)
 	return (1);
 }
 
-void			ft_create_image(t_visu *visu, int width, int height)
+void			ft_create_image(t_image *img, int width, int height, t_visu *visu)
 {
-	visu->img.ptr = mlx_new_image(visu->mlx_ptr, width, height);
-	visu->img.width = width;
-	visu->img.height = height;
-	if (!(visu->img.ptr))
+	img->ptr = mlx_new_image(visu->mlx_ptr, width, height);
+	img->width = width;
+	img->height = height;
+	if (!(img->ptr))
 	{
 		ft_free_visu(visu);
 		exit(1);
 	}
-	visu->img.data = mlx_get_data_addr(visu->img.ptr,
-			&visu->img.bpp, &visu->img.sizeline, &visu->img.endian);
-	visu->img.bpp /= 8;
+	img->data = mlx_get_data_addr(img->ptr,
+			&img->bpp, &img->sizeline, &img->endian);
+	img->bpp /= 8;
 }

@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 21:08:17 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/15 00:55:38 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/15 02:41:38 by Mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void		ft_reload_visu(t_visu *visu)
 
 	visu->stack_size = read_from_file(".values", &visu->stack_a);
 	fd = open(".instructions", O_WRONLY | O_CREAT | O_TRUNC, 0666);
-	if (visu->stack_size == 1 || fd == -1 ||
+	if (visu->stack_size == -1 || fd == -1 ||
 		(stdout = dup(STDOUT_FILENO)) == -1 || dup2(fd, STDOUT_FILENO) == -1)
 	{
 		ft_free_visu(visu);
@@ -82,7 +82,7 @@ void		ft_reload_visu(t_visu *visu)
 		ft_free_visu(visu);
 		exit(1);
 	}
-	set_values(visu, instructions);
+	ft_set_visu_values(visu, instructions);
 }
 
 void		ft_generate_numbers(int size, t_visu *visu)

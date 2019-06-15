@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 08:20:10 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/15 01:16:03 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/15 03:08:16 by Mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int					ft_free_visu(t_visu *visu)
 	free(visu->mlx_ptr);
 	free(visu->win_ptr);
 	free(visu->img.ptr);
+	free(visu->anim.ptr);
 	destroy_lists(visu->stack_a, visu->stack_b, visu->backup_list);
 	return (-1);
 }
@@ -129,7 +130,7 @@ int					ft_init_colors(t_visu *visu)
 	}
 	return (0);
 }
-int					set_values(t_visu *visu, t_list *instructions)
+int					ft_set_visu_values(t_visu *visu, t_list *instructions)
 {
 	if (ft_lst_to_tab(visu, instructions))
 		return (ft_free_visu(visu));
@@ -147,6 +148,16 @@ int					set_values(t_visu *visu, t_list *instructions)
 	ft_create_backup(visu);
 	return (0);
 }
+void				ft_init_anim(t_image *img)
+{
+	int i;
+	int j;
+
+	i = -1;
+	while (++i < 125 && (j = -1))
+		while (++j < 50)
+			ft_put_pixel_img(img, i, j, 0xFF0000);
+}
 
 int					ft_init_visu(t_visu *visu, int ac, char **av)
 {
@@ -161,14 +172,14 @@ int					ft_init_visu(t_visu *visu, int ac, char **av)
 	if (read_instructions(&instructions,
 							(visu->flags & INSTRU_FROM_FILE) ? av[1] : NULL))
 		return (ft_free_visu(visu));
-	if (set_values(visu, instructions))
-		return (-1);
-	if (!(visu->mlx_ptr = mlx_init()))
-		return (-1);
+	if (ft_set_visu_values(visu, instructions) || !(visu->mlx_ptr = mlx_init()))
+		return (ft_free_visu(visu));
 	visu->win_ptr = mlx_new_window(visu->mlx_ptr, WIDTH, HEIGHT, "push_swap");
 	if (!visu->win_ptr)
 		return (ft_free_visu(visu));
-	ft_create_image(visu, WIDTH, HEIGHT);
+	ft_create_image(&visu->img, WIDTH, HEIGHT, visu);
+	ft_create_image(&visu->anim, 125, 50, visu);
+	ft_init_anim(&visu->anim);
 	mlx_mouse_hook(visu->win_ptr, &mouse_event, visu);
 	mlx_hook(visu->win_ptr, 2, 1L << 0, &key_event, visu);
 	mlx_loop_hook(visu->mlx_ptr, &refresh, visu);

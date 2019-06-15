@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 08:12:49 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/14 23:47:53 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/15 02:53:17 by Mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct		s_image
 typedef struct		s_visu
 {
 	t_image				img;
+	t_image				anim;
 	void				*mlx_ptr;
 	void				*win_ptr;
 	int					item_max_width;
@@ -61,6 +62,7 @@ typedef struct		s_visu
 	char				flags;
 	char				pause;
 	char				colormode;
+	char				sleep;
 }					t_visu;
 
 typedef struct		s_item
@@ -76,7 +78,7 @@ typedef struct		s_item
 int				ft_init_visu(t_visu *visu, int ac, char **av);
 int				ft_free_visu(t_visu *visu);
 void 			ft_create_backup(t_visu *visu);
-int				set_values(t_visu *visu, t_list *instructions);
+int				ft_set_visu_values(t_visu *visu, t_list *instructions);
 void 			ft_create_backup(t_visu *visu);
 /*
 **	EVENTS.C
@@ -89,7 +91,7 @@ int				mouse_event(int b, int x, int y, t_visu *visu);
 ** IMAGE.C
 */
 int				ft_put_pixel_img(t_image *img, int x, int y, int color);
-void			ft_create_image(t_visu *visu, int width, int height);
+void			ft_create_image(t_image *img, int width, int height, t_visu *visu);
 /*
 ** FT_DRAW.C
 */
