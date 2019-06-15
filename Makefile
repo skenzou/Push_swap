@@ -6,7 +6,7 @@
 #    By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/03 09:24:41 by midrissi          #+#    #+#              #
-#    Updated: 2019/06/15 15:17:21 by midrissi         ###   ########.fr        #
+#    Updated: 2019/06/16 00:57:52 by midrissi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ PUSH_SWAP		= push_swap
 CHECKER			= checker
 VISU			= visu
 CC				= gcc
-C_FLAGS			= -Wall -Wextra -Werror -O3 #-fsanitize=address
+C_FLAGS			= -Wall -Wextra -Werror -O3 #-g -v#-fsanitize=address
 OBJ_PATH		= ./obj/
 LIBFT_PATH		= libft/
 LIBFT_NAME		= libft.a
@@ -69,12 +69,17 @@ SRC_NAME		= $(COMMON_DIR)ft_arg_checker.c \
 				  $(COMMON_DIR)ft_utils.c \
 				  $(COMMON_DIR)ft_utils2.c \
 				  							\
+				  $(PUSH_SWAP_DIR)ft_find_median.c \
+				  $(PUSH_SWAP_DIR)ft_launch_sort.c \
 				  $(PUSH_SWAP_DIR)ft_sort_2.c \
 				  $(PUSH_SWAP_DIR)ft_sort_3.c \
 				  $(PUSH_SWAP_DIR)ft_sort_4.c \
 				  $(PUSH_SWAP_DIR)ft_sort_5.c \
+				  $(PUSH_SWAP_DIR)ft_sort_b.c \
+				  $(PUSH_SWAP_DIR)ft_sort_small.c \
 				  $(PUSH_SWAP_DIR)ft_sort.c \
 				  $(PUSH_SWAP_DIR)ft_utils.c \
+				  $(PUSH_SWAP_DIR)ft_utils2.c \
 				  							\
 				  $(VISU_DIR)ft_close_event.c \
 				  $(VISU_DIR)ft_draw.c \

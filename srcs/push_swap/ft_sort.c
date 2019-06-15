@@ -5,546 +5,116 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/08 10:04:50 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/15 15:23:57 by midrissi         ###   ########.fr       */
+/*   Created: 2019/06/15 16:25:43 by midrissi          #+#    #+#             */
+/*   Updated: 2019/06/16 00:55:49 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int			count_lower_nbs(t_list *stack, int value, int size)
+static void			ft_sort_top(t_list **stack_a, int size)
 {
-	int count;
-	int i;
-
-	count = 0;
-	i = -1;
-	while (stack && ++i < size)
-	{
-		count += *((int *)stack->content) < value;
-		stack = stack->next;
-	}
-	return (count);
-}
-
-static int			find_median(t_list *stack, int size)
-{
-	int half;
-	int value;
-	t_list *list;
-	int i;
-
-	half = size / 2;
-	list = stack;
-	i = -1;
-	while (list && ++i < size)
-	{
-		value = *((int *)list->content);
-		if (count_lower_nbs(stack, value, size) == half)
-			return (value);
-		list = list->next;
-	}
-	return (0);
-}
-
-static int		ft_is_size_sorted(t_list *stack, int size)
-{
-	int i;
-
-	i = -1;
-	while (stack && stack->next && ++i < size)
-	{
-		if ((*(int *)stack->content) > (*(int *)stack->next->content))
-			return (0);
-		stack = stack->next;
-	}
-	return (1);
-}
-
-int			check_nbs_left(t_list *stack, int size, int median)
-{
-	int i;
-	t_list *save;
-	int count;
-
-	i = -1;
-	save = stack;
-	count = 0;
-	while (++i < size)
-	{
-		if (*((int *)stack->content) <= median)
-			return (0);
-		stack = stack->next;
-	}
-	return (1);
-}
-
-int			check_nbs_left_b(t_list *stack, int size, int median)
-{
-	int i;
-	t_list *save;
-
-	i = -1;
-	save = stack;
-	while (++i < size)
-	{
-		if (*((int *)stack->content) > median)
-			return (0);
-		stack = stack->next;
-	}
-	return (1);
-}
-
-void 		ft_launch_sort(int size, t_list **stack_a, t_list **stack_b)
-{
-	if (ft_is_sorted(*stack_a))
-		return ;
-	if (size <= 3)
-		ft_sort_3(stack_a, STACK_A);
-	else if (size == 4)
-		ft_sort_4(stack_a, stack_b, STACK_A);
-	else if (size == 5)
-		ft_sort_5(stack_a, stack_b, STACK_A);
-	else
-		ft_sort(stack_a, stack_b, size, size, 1);
-}
-
-int		get_min_from_tab(int *tab, int size)
-{
-	int i;
-	int min;
-
-	if (!size)
-		return (-2147483648);
-	i = 0;
-	min = tab[0];
-	while (++i < size)
-		if (min > tab[i])
-			min = tab[i];
-	return (min);
-}
-
-int		check_insert(t_list *list, int last, int current)
-{
-	while (list)
-	{
-		if (*((int *)list->content) > last && *((int *)list->content) < current)
-			return (1);
-		list = list->next;
-	}
-	return (0);
-}
-
-int		is_botom_sorted(t_list *list, int chunk)
-{
-	int size;
-	int i;
-	int min;
-	int sorted;
-	int last;
-	t_list *save;
-
-	if (chunk == 0 || !list)
-		return (1);
-	size = ft_lstsize(list);
-	size = size - chunk;
-	i = -1;
-	min = *((int *)list->content);
-	save = list;
-	while (++i < size && list)
-	{
-		if (min > *((int *)list->content))
-			min = *((int *)list->content);
-		list = list->next;
-	}
-	if (list)
-	{
-
-		sorted = *((int *)list->content);
-		last = *((int *)list->content);
-	// ft_printf("start: %d\n", sorted);
-}
-	while (list)
-	{
-		if (check_insert(save, last, *((int *)list->content)))
-			return (0);
-		if (*((int *)list->content) < sorted)
-			return (0);
-		last = *((int *)list->content);
-		list = list->next;
-	}
-	return (1);
-}
-
-int				pos_min(t_list *stack)
-{
-	t_list	*list;
-	int		min;
-	int     i;
-	int		pos_min;
-
-	i = 0;
-	pos_min = 0;
-	list = stack;
-	min = *(int *)stack->content;
-	while (list)
-	{
-		if (*(int *)list->content < min)
-		{
-			pos_min = i;
-			min = *(int *)list->content;
-		}
-		list = list->next;
-		i++;
-	}
-	return (pos_min);
-}
-
-int				get_next_min(t_list *list, int oldmin)
-{
-	int min;
-	int i;
-
-	if (oldmin != 0)
-		min = *(int *)list->content;
-	else
-		min = *(int *)list->next->content;
-	i = 0;
-	while (list)
-	{
-		if (*(int *)list->content < min && i != oldmin)
-			min = *(int *)list->content;
-		i++;
-		list = list->next;
-	}
-	return (min);
-}
-
-void            sortsmall(t_list **stack_a, t_list **stack_b, int size, int initial)
-{
-	int         pos;
-	int         i;
-	int			best_choice;
-
-
-	if (size == 2)
-	{
-		ft_sort_2(stack_b, STACK_B);
-		ft_push(stack_a, stack_b, STACK_A);
-		ft_push(stack_a, stack_b, STACK_A);
-		ft_rotate(stack_a, stack_b, STACK_A);
-		ft_rotate(stack_a, stack_b, STACK_A);
-		return ;
-	}
-	if (size <= 1 && *stack_b)
-	{
-		// print_lists(*stack_a, *stack_b, NULL);
-		int lstsize = ft_lstsize(*stack_b);
-		int j = -1;
-		while (++j < lstsize)
-		{
-			ft_push(stack_a, stack_b, STACK_A);
-			ft_rotate(stack_a, NULL, STACK_A);
-		}
-		// print_lists(*stack_a, *stack_b, NULL);
-		return ;
-	}
-	pos = pos_min(*stack_b);
-	// print_list(*stack_b, 2);
-	// ft_printf("pos of min: %d\n", pos);
-	i = -1;
-	best_choice = size / 2;
-	// ft_printf("best_choice: %d\n", best_choice);
-	//ft_printf("best_choice = %d\n", best_choice);
-	int next_min = get_next_min(*stack_b, pos);
-	int count = 0;
-	// ft_printf("next_min: %d\n", next_min);
-	// print_list(*stack_b, 2);
-	int min_value = ft_get_min_value(*stack_b);
-	if (pos > best_choice)
-	{
-		// state_stack(&d->a, 'a');
-		// ft_printf("pos: %d\n", pos);
-		// ft_printf("d->len_a: %d\n", d->len_a);
-
-		while (*stack_b && min_value != *(int *)(*stack_b)->content)
-		{
-			if (*stack_b && count < 2 && next_min == *(int *)(*stack_b)->content)
-			{
-				// ft_printf("0001\n");
-				count++;
-				ft_push(stack_a, stack_b, STACK_A);
-				// ft_printf("00002\n");
-				if (count == 2)
-					ft_swap(stack_a, NULL, STACK_A);
-				// ft_printf("0003\n");
-				get_next_min(*stack_b, pos);
-				// i++;
-				continue ;
-				// ft_printf("0004\n");
-			}
-			ft_reverse_rotate(stack_b, NULL, STACK_B);
-		}
-		// state_stack(&d->a, 'a');
-	}
-	else
-	{
-		while (*stack_b && min_value != *(int *)(*stack_b)->content)
-		{
-			if (*stack_b && count < 2 && next_min == *(int *)(*stack_b)->content)
-			{
-				count++;
-				// ft_printf("11111\n");
-				ft_push(stack_a, stack_b, STACK_A);
-				// ft_printf("11112\n");
-				if (count == 2)
-					ft_swap(stack_a, NULL, STACK_A);
-				// ft_printf("11113\n");
-				get_next_min(*stack_b, pos);
-				// i++;
-				continue ;
-				// ft_printf("11114\n");
-			}
-			ft_rotate(stack_b, NULL, STACK_B);
-		}
-	}
-	// ft_printf("NB to push: %d\n", *(int *)(*stack_b)->content);
-	// print_lists(*stack_a, *stack_b, NULL);
-	size--;
-	ft_push(stack_a, stack_b, STACK_A);
-	int min = ft_get_min_index(*stack_b);
-	if (*stack_b && min < size / 2)
-	{
-		ft_rotate(stack_a, stack_b, BOTH);
-		// ft_rotate(stack_b, NULL, NO_WRITE);
-	}
-	else
-		ft_rotate(stack_a, NULL, STACK_A);
-	if (count)
-	{
-		// ft_printf("test\n");
-		while (count--)
-		{
-			ft_rotate(stack_a, NULL, STACK_A);
-			size--;
-		}
-	}
-	if (ft_is_rev_sorted(*stack_b))
-	{
-		int k = 0;
-		while (*stack_b)
-		{
-			ft_push(stack_a, stack_b, STACK_A);
-			k++;
-		}
-		while (k--)
-			ft_rotate(stack_a, NULL, STACK_A);
-		return ;
-	}
-	if (!ft_is_sorted(*stack_b))
-		sortsmall(stack_a, stack_b, size, initial);
-	else
-	{
-		// ft_printf("size: %d\n", size);
-		// print_lists(*stack_a, *stack_b, NULL);
-		i = -1;
-		while (++i < size)
-		{
-			ft_push(stack_a, stack_b, STACK_A);
-			ft_rotate(stack_a, NULL, STACK_A);
-		}
-		// print_lists(*stack_a, *stack_b, NULL);
-		// i = -1;
-		// while (++i < size)
-		// 	ft_rotate(stack_a, NULL, STACK_A);
-	}
-}
-
-void		ft_sort_b(t_list **stack_a, t_list **stack_b, int size, int initial_size)
-{
-	int median;
-	int i;
-	int value;
-	int top_half_len;
-	int index;
-	int min;
-	int	sorted;
-
-	if (size <= 30)
-	{
-		sortsmall(stack_a, stack_b, size, size);
-		return ;
-	}
-		(void)initial_size;
-	median = find_median(*stack_b, ft_lstsize(*stack_b));
-	i = -1;
-	top_half_len = 0;
-	index = -1;
-	sorted = 0;
-	int *save;
-	int size_b;
-	t_list *tmp;
-	size_b = ft_lstsize(*stack_b);
-	save = ft_memalloc(sizeof(int) * size_b);
-	tmp = *stack_b;
-	i = 0;
-	while (tmp)
-	{
-		save[i++] = *((int *)tmp->content);
-		tmp = tmp->next;
-	}
-	i = 0;
-	ft_sort_tab(save, size);
-	min = save[i++];
-	int min_index;
-	min_index = ft_get_min_index(*stack_b);
-	while (++index < size)
-	{
-		value = *((int *)(*stack_b)->content);
-		if (value == min)
-		{
-			ft_push(stack_a, stack_b, STACK_A);
-			if (*((int *)(*stack_b)->content) != save[i] && *((int *)(*stack_b)->content) <= median)
-			{
-				ft_rotate(stack_a, stack_b, BOTH);
-				// ft_rotate(stack_b, NULL, NO_WRITE);
-			}
-			else
-				ft_rotate(stack_a, NULL, STACK_A);
-				min = save[i++];
-				sorted++;
-		}
-		else if (value > median)
-		{
-			ft_push(stack_a, stack_b, STACK_A);
-			top_half_len++;
-		}
-		else
-			ft_rotate(stack_b, NULL, STACK_B);
-		if (check_nbs_left_b(*stack_b, ft_lstsize(*stack_b), median))
-		{
-			break ;
-		}
-	}
-	ft_sort_b(stack_a, stack_b, ft_lstsize(*stack_b), size);
-}
-
-int			get_first(t_list *list, int size)
-{
-	int i;
-
-	i = -1;
-	while (++i < size && list)
-		list = list->next;
-	return (*((int *)list->content));
-}
-
-int			size_till_median(t_list *list, int median)
-{
-	int i;
-
-	i = 0;
-	while (list)
-	{
-		if (*((int *)list->content) == median)
-			return (i);
-		list = list->next;
-		i++;
-	}
-	return (i);
-}
-
-void		ft_sort(t_list **stack_a, t_list **stack_b, int size, int initial_size, int first)
-{
-	int median;
-	int i;
-	int value;
-	int top_half_len;
-	int index;
-	int ret;
-
 	if (size == 1)
-		ft_rotate(stack_a, stack_b, STACK_A);
-	if (size <= 1)
-		return ;
-	median = find_median(*stack_a, size);
-	i = -1;
-	top_half_len = 0;
-	if (size == 2)
+		ft_rotate(stack_a, NULL, STACK_A);
+	else if (size == 2)
 	{
 		ft_sort_2(stack_a, STACK_A);
-		ft_rotate(stack_a, stack_b, STACK_A);
-		ft_rotate(stack_a, stack_b, STACK_A);
-		return ;
+		ft_rotate(stack_a, NULL, STACK_A);
+		ft_rotate(stack_a, NULL, STACK_A);
 	}
-	index = -1;
-	int tmp_med;
-	while (++index < size)
+}
+
+#define MEDIAN 0
+#define TOP_HALF_LEN 1
+#define B_MEDIAN 2
+
+static int			ft_sort_loop(t_list **stack_a, t_list **stack_b,
+														int size, int *i)
+{
+	int data[3];
+
+	data[MEDIAN] = ft_find_median(*stack_a, size);
+	data[TOP_HALF_LEN] = 0;
+	while (++(*i) < size)
 	{
 		if (*stack_b)
-			tmp_med = find_median(*stack_b, ft_lstsize(*stack_b));
-		value = *((int *)(*stack_a)->content);
-		if (value <= median)
+			data[B_MEDIAN] = ft_find_median(*stack_b, ft_lstsize(*stack_b));
+		if (*((int *)(*stack_a)->content) <= data[MEDIAN])
 		{
 			ft_push(stack_b, stack_a, STACK_B);
-			top_half_len++;
+			data[TOP_HALF_LEN]++;
 		}
 		else
 		{
-			if (*stack_b && *((int *)(*stack_b)->content) <= tmp_med && ft_lstsize(*stack_b) > 5)
-			{
+			if (*stack_b && *((int *)(*stack_b)->content) <= data[B_MEDIAN]
+													&& ft_lstsize(*stack_b) > 5)
 				ft_rotate(stack_a, stack_b, BOTH);
-				// ft_rotate(stack_b, NULL, NO_WRITE);
-			}
 			else
 				ft_rotate(stack_a, NULL, STACK_A);
 		}
-		if (check_nbs_left(*stack_a, size - index, median))
-		{
-			index++;
+		if (ft_check_nbs_left(*stack_a, size - *i, data[MEDIAN]) && ++(*i))
 			break ;
-		}
 	}
-	if (!first)
+	return (data[TOP_HALF_LEN]);
+}
+
+static void			ft_apply_rras(t_list **stack_a, t_list **stack_b, int size,
+																int b_middle)
+{
+	int min;
+
+	while (size--)
 	{
-		i = -1;
-		int min;
 		min = ft_get_min_index(*stack_b);
-		while (++i < index - top_half_len)
-		{
-			min = ft_get_min_index(*stack_b);
-			if (min > top_half_len / 2)
-			{
-				ft_reverse_rotate(stack_a, stack_b, BOTH);
-				// ft_reverse_rotate(stack_b, NULL, NO_WRITE);
-			}
-			else
-				ft_reverse_rotate(stack_a, NULL, STACK_A);
-		}
+		if (min > b_middle)
+			ft_reverse_rotate(stack_a, stack_b, BOTH);
+		else
+			ft_reverse_rotate(stack_a, NULL, STACK_A);
 	}
-	(void)ret;
-	int save = *((int *)(*stack_a)->content);
+}
+
+static void			ft_post_rras(t_list **stack_a, t_list **stack_b, int b_size,
+																	int size)
+{
+	int save;
+	int leftover;
+	int i;
+
+	save = *((int *)(*stack_a)->content);
 	if (!ft_is_rev_sorted(*stack_b))
-		ft_sort_b(stack_a, stack_b, top_half_len, top_half_len);
+		ft_sort_b(stack_a, stack_b, b_size);
 	else
 	{
 		i = -1;
-		while (++i < top_half_len)
+		while (++i < b_size)
 			ft_push(stack_a, stack_b, STACK_A);
 		i = -1;
-		while (++i < top_half_len)
+		while (++i < b_size)
 			ft_rotate(stack_a, stack_b, STACK_A);
 	}
-	while (!ft_is_size_sorted(*stack_a, size_till_median(*stack_a, save)))
-		ft_sort(stack_a, stack_b, size_till_median(*stack_a, save), initial_size, 0);
-	if (size == initial_size)
+	while (!ft_is_size_sorted(*stack_a, ft_size_till_median(*stack_a, save)))
+		ft_sort(stack_a, stack_b, ft_size_till_median(*stack_a, save), 0);
+	leftover = ft_size_till_median(*stack_a, save);
+	while (leftover--)
+		ft_rotate(stack_a, NULL, STACK_A);
+	if (!ft_is_size_sorted(*stack_a, size - b_size))
+		ft_sort(stack_a, stack_b, size - b_size, 0);
+}
+
+void				ft_sort(t_list **stack_a, t_list **stack_b, int size,
+																	int first)
+{
+	int top_half_len;
+	int index;
+
+	if (size <= 2)
 	{
-		i = -1;
-		int haha;
-		haha = size_till_median(*stack_a, save);
-		while (++i < haha)
-			ft_rotate(stack_a, NULL, STACK_A);
-		if (!ft_is_size_sorted(*stack_a, size - top_half_len))
-		ft_sort(stack_a, stack_b, size - top_half_len, size - top_half_len, 0);
+		ft_sort_top(stack_a, size);
+		return ;
 	}
+	index = -1;
+	top_half_len = ft_sort_loop(stack_a, stack_b, size, &index);
+	if (!first)
+		ft_apply_rras(stack_a, stack_b, index - top_half_len, top_half_len / 2);
+	ft_post_rras(stack_a, stack_b, top_half_len, size);
 }

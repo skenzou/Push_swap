@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/23 10:33:14 by midrissi          #+#    #+#             */
-/*   Updated: 2019/05/23 10:40:46 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/16 00:56:51 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ static void		free_mem(char **strings, int len)
 	free(strings);
 }
 
-char	**ft_splitdup(char **src)
+char			**ft_splitdup(char **src)
 {
-	char **new;
-	int i;
-	int size;
+	char		**new;
+	int			i;
+	int			size;
 
 	if (!src)
 		return (NULL);

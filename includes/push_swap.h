@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 01:49:30 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/15 15:55:32 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/16 00:05:21 by midrissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,15 @@ void			ft_execute_instruction(t_instruction *instruction,
 ** **************************PUSH_SWAP*************************
 */
 /*
+**  FT_FIND_MEDIAN.C
+*/
+int				ft_find_median(t_list *stack, int size);
+int				ft_size_till_median(t_list *list, int median);
+/*
+**  FT_LAUNCH_SORT.C
+*/
+void			ft_launch_sort(int size, t_list **stack_a, t_list **stack_b);
+/*
 ** FT_SORT_2.C
 */
 void			ft_sort_2(t_list **stack, char dest);
@@ -109,12 +118,20 @@ void			ft_sort_4(t_list **stack_a, t_list **stack_b, char dest);
 */
 void			ft_sort_5(t_list **stack_a, t_list **stack_b, char dest);
 /*
+** FT_SORT_B.C
+*/
+void			ft_sort_b(t_list **stack_a, t_list **stack_b, int size);
+
+/*
+** FT_SORT_SMALL.C
+*/
+void			ft_sort_small(t_list **stack_a, t_list **stack_b, int size,
+																int initial);
+/*
 ** FT_SORT.C
 */
-void			ft_sort(t_list **stack_a, t_list **stack_b, int size,
-												int initial_size, int first);
+void			ft_sort(t_list **stack_a, t_list **stak_b, int size, int first);
 void			sort_small(t_list **stack, char dest);
-void			ft_launch_sort(int size, t_list **stack_a, t_list **stack_b);
 /*
 ** FT_UTILS.C
 */
@@ -123,6 +140,14 @@ int				ft_get_max_index(t_list *stack);
 int				ft_get_last(t_list *list);
 int				ft_is_rev_sorted(t_list *stack);
 void			ft_sort_tab(int *tab, int size);
+/*
+**  FT_UTILS2.C
+*/
+int				ft_get_next_min(t_list *list, int oldmin);
+int				ft_is_size_sorted(t_list *stack, int size);
+int				ft_check_nbs_left(t_list *stack, int size, int median);
+int				ft_check_nbs_left_b(t_list *stack, int size, int median);
+void			ft_place_top(t_list **stack_a, t_list **stack_b, int size);
 /*
 ** ************************************************************
 */
