@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 13:34:56 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/15 23:04:57 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/16 10:54:09 by Mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,14 @@ void		ft_rotate(t_list **stack_a, t_list **stack_b, char dest)
 }
 
 void		ft_execute_instructions(t_list **stack_a, t_list **stack_b,
-								t_list *instructions)
+								t_list *instructions, char visu)
 {
 	while (instructions)
 	{
 		ft_execute_instruction((t_instruction *)instructions->content,
 															stack_a, stack_b);
+		if (visu)
+			ft_print_state(*stack_a, *stack_b);
 		instructions = instructions->next;
 	}
 	if (ft_is_sorted(*stack_a) && !(*stack_b))

@@ -6,7 +6,7 @@
 #    By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/03 09:24:41 by midrissi          #+#    #+#              #
-#    Updated: 2019/06/16 00:57:52 by midrissi         ###   ########.fr        #
+#    Updated: 2019/06/16 11:17:21 by Mohamed          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ PUSH_SWAP		= push_swap
 CHECKER			= checker
 VISU			= visu
 CC				= gcc
-C_FLAGS			= -Wall -Wextra -Werror -O3 #-g -v#-fsanitize=address
+C_FLAGS			= -Wall -Wextra -Werror -O3 #-fsanitize=address
 OBJ_PATH		= ./obj/
 LIBFT_PATH		= libft/
 LIBFT_NAME		= libft.a
@@ -68,6 +68,7 @@ SRC_NAME		= $(COMMON_DIR)ft_arg_checker.c \
 				  $(COMMON_DIR)ft_read_instructions.c \
 				  $(COMMON_DIR)ft_utils.c \
 				  $(COMMON_DIR)ft_utils2.c \
+				  $(COMMON_DIR)ft_print_state.c \
 				  							\
 				  $(PUSH_SWAP_DIR)ft_find_median.c \
 				  $(PUSH_SWAP_DIR)ft_launch_sort.c \
@@ -170,7 +171,8 @@ fclean: clean_obj
 		@rm -f $(PUSH_SWAP)
 		@rm -f $(CHECKER)
 		@rm -f $(VISU)
-		@echo "$(_BOLD)$(_RED)Successfully removed ${PUSH_SWAP}, ${CHECKER} and ${VISU} from ${PUSH_SWAP}$(_END)"
+		@echo "$(_BOLD)$(_RED)Successfully removed ${PUSH_SWAP}, ${CHECKER} and\
+ ${VISU} from ${PUSH_SWAP}$(_END)"
 		@make -C $(LIBFT_PATH) fclean
 		@make -C $(MLX_PATH) clean
 

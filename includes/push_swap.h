@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 01:49:30 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/16 00:05:21 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/16 10:53:19 by Mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,15 @@ void			ft_push(t_list **first, t_list **second, char write);
 void			ft_reverse_rotate(t_list **stack, t_list **unused, char write);
 void			ft_rotate(t_list **stack, t_list **unused, char write);
 void			ft_execute_instructions(t_list **stack_a, t_list **stack_b,
-														t_list *instructions);
+								t_list *instructions, char visu);
 /*
 **	FT_PARSE_ARGS.C
 */
 int				ft_parse_args(int ac, char **av, t_list **head, char *flags);
+/*
+** FT_PRINT_STATE.C
+*/
+void			ft_print_state(t_list *stack_a, t_list *stack_b);
 /*
 ** FT_READ_FROM_FILE.C
 */

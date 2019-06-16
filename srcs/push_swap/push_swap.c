@@ -6,7 +6,7 @@
 /*   By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 09:30:20 by midrissi          #+#    #+#             */
-/*   Updated: 2019/06/15 13:26:37 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/16 10:56:50 by Mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,12 @@ int		main(int ac, char **av)
 	char		flags;
 	int			size;
 
-	stack_a = NULL;
 	if ((size = ft_parse_args(ac, av, &stack_a, &flags)) == -1)
 		return (!ft_lstdestroy(&stack_a));
 	stack_b = NULL;
 	ft_launch_sort(size, &stack_a, &stack_b);
 	if (flags & VISU)
-		ft_print_lists(stack_a, stack_b, NULL);
+		ft_print_state(stack_a, stack_b);
 	ft_destroy_lists(stack_a, stack_b, NULL);
 	return (0);
 }

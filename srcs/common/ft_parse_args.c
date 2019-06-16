@@ -6,7 +6,7 @@
 /*   By: Mohamed <Mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 12:17:57 by Mohamed           #+#    #+#             */
-/*   Updated: 2019/06/15 22:20:50 by midrissi         ###   ########.fr       */
+/*   Updated: 2019/06/16 10:27:33 by Mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int				ft_parse_args(int ac, char **av, t_list **head, char *flags)
 	i = 0;
 	count = 0;
 	*flags = 0;
+	*head = NULL;
 	if (ft_check_flags(&av, &ac, flags) || ac == 1)
 		return (-1);
 	if (*flags & FROM_FILE)
