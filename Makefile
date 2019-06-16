@@ -6,7 +6,7 @@
 #    By: midrissi <midrissi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/03 09:24:41 by midrissi          #+#    #+#              #
-#    Updated: 2019/06/16 11:17:21 by Mohamed          ###   ########.fr        #
+#    Updated: 2019/06/16 12:22:22 by midrissi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ PUSH_SWAP		= push_swap
 CHECKER			= checker
 VISU			= visu
 CC				= gcc
-C_FLAGS			= -Wall -Wextra -Werror -O3 #-fsanitize=address
+C_FLAGS			= -Wall -Wextra -Werror -O3
 OBJ_PATH		= ./obj/
 LIBFT_PATH		= libft/
 LIBFT_NAME		= libft.a
@@ -171,6 +171,8 @@ fclean: clean_obj
 		@rm -f $(PUSH_SWAP)
 		@rm -f $(CHECKER)
 		@rm -f $(VISU)
+		@rm -f .values
+		@rm -f .instructions
 		@echo "$(_BOLD)$(_RED)Successfully removed ${PUSH_SWAP}, ${CHECKER} and\
  ${VISU} from ${PUSH_SWAP}$(_END)"
 		@make -C $(LIBFT_PATH) fclean
